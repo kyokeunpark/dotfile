@@ -6,6 +6,7 @@ My personal dotfiles for Arch + i3 setup
 
 - i3
 - polybar
+- rofi
 - scrot
 - zsh
 - vim
@@ -15,5 +16,6 @@ My personal dotfiles for Arch + i3 setup
 - [ ] Complete i3 config file
 - [x] Complete polybar config file 
 - [ ] Complete zsh config file 
+- [ ] Rice rofi
 - [ ] Complete vimrc
 - [ ] Install ranger and modify config file 

@@ -1,0 +1,10 @@
+#!/bin/bash
+# Purpose of this script is to sync all the dotfiles/rice with my gitlab repository
+
+REPO=~/Documents/i3_arch_rice/
+FILE=~/.scripts/dotlist
+# LIST=`sed -e ":a;N;$!ba;s/\n/ /g; s/~/$HOME/g" $FILE`
+# LIST=`sed -e ':a' -e 'N' -e '$!ba' -e "s/~/$HOME/g" -e 's/\n/ /g' $FILE
+LIST=`tr '\n' ' ' < $FILE | sed "s@~@$HOME@g"`
+
+cp -r $LIST $REPO
