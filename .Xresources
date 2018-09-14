@@ -34,12 +34,12 @@
 URxvt*scrollBar:         false
 URxvt*scrollBar_right:   false
 
-URxvt*transparent:       true
+URxvt*transparent:       false
 URxvt*shading:		 50
 URxvt*blurRadius: 	 10
 
 URxvt*depth: 32
-URxvt.background: [40]#232c31
+URxvt.background: [80]#232c31
 
 URxvt.font: xft:Source Code Pro:pixelsize=14
 URxvt.letterSpace: 0

@@ -1,6 +1,9 @@
 ~/.vimrc
 ~/.zshrc
 ~/.Xresources
+~/.mailcap
+~/.config/rtv
 ~/.config/i3
 ~/.config/polybar
+~/.config/qutebrowser
 ~/.scripts

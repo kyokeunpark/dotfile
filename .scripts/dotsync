@@ -3,8 +3,11 @@
 
 REPO=~/Documents/i3_arch_rice/
 FILE=~/.scripts/dotlist
-# LIST=`sed -e ":a;N;$!ba;s/\n/ /g; s/~/$HOME/g" $FILE`
-# LIST=`sed -e ':a' -e 'N' -e '$!ba' -e "s/~/$HOME/g" -e 's/\n/ /g' $FILE
 LIST=`tr '\n' ' ' < $FILE | sed "s@~@$HOME@g"`
 
-cp -r $LIST $REPO
+for ITEM in $LIST
+do
+	DIR=`dirname "${ITEM}" | sed "s@$HOME@@g"`
+	echo $DIR
+	cp -r $ITEM $REPO$DIR
+done
