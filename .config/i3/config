@@ -37,6 +37,7 @@ bindsym $mod+Shift+space 	floating toggle
 bindsym $mod+space 		focus mode_toggle
 bindsym Print			--release exec --no-startup-id scrot -e 'mv $f ~/Photos/ss'
 bindsym Shift+Print		--release exec --no-startup-id scrot -s -e 'mv $f ~/Photos/ss'
+bindsym $mod+semicolon			exec --no-startup-id rofimoji
 bindsym XF86AudioRaiseVolume 	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec 	exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle

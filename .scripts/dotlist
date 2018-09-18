@@ -6,4 +6,5 @@
 ~/.config/i3
 ~/.config/polybar
 ~/.config/qutebrowser
+~/.config/ranger
 ~/.scripts

@@ -3,5 +3,13 @@
 
 config_version: 2
 settings:
-  scrolling.smooth:
-    global: false
+  aliases:
+    global:
+      q: quit
+      w: session-save
+      wq: quit --save
+  confirm_quit:
+    global:
+    - never
+  history_gap_interval:
+    global: 30

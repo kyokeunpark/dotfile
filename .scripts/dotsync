@@ -8,6 +8,5 @@ LIST=`tr '\n' ' ' < $FILE | sed "s@~@$HOME@g"`
 for ITEM in $LIST
 do
 	DIR=`dirname "${ITEM}" | sed "s@$HOME@@g"`
-	echo $DIR
 	cp -r $ITEM $REPO$DIR
 done
