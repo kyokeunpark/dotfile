@@ -54,19 +54,26 @@ bindsym $mod+d 			exec rofi -show run
 
 bindsym $mod+f 			fullscreen toggle
 
+bindsym $mod+Shift+i	exec --no-startup-id "bash ~/.scripts/i3resize down"
+
 bindsym $mod+m			exec --no-startup-id spotify
-bindsym $mod+Shift+m		exec --no-startup-id pavucontrol
+bindsym $mod+Shift+m	exec --no-startup-id pavucontrol
 
 bindsym $mod+o			sticky toggle
+bindsym $mod+Shift+o	exec --no-startup-id "bash ~/.scripts/i3resize up"
 
-bindsym $mod+Shift+q 		kill
+bindsym $mod+Shift+p	exec --no-startup-id "bash ~/.scripts/i3resize right"
 
-bindsym $mod+Shift+r 		restart
-bindsym $mod+Ctrl+r 		exec --no-startup-id ~/.scripts/prompt "Are you sure you want to reboot?" "$reboot"
+bindsym $mod+Shift+q 	kill
+
+bindsym $mod+r			exec $term -e ranger
+bindsym $mod+Shift+r 	restart
+bindsym $mod+Ctrl+r 	exec --no-startup-id ~/.scripts/prompt "Are you sure you want to reboot?" "$reboot"
 
 bindsym $mod+t			split toggle
 
 bindsym $mod+u			[instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
+bindsym $mod+Shift+u	exec --no-startup-id "bash ~/.scripts/i3resize left"
 
 bindsym $mod+w			exec --no-startup-id $browser
 
@@ -137,22 +144,6 @@ bindsym $mod+Shift+h 		move left 30
 bindsym $mod+Shift+j 		move down 30
 bindsym $mod+Shift+k 		move up 30
 bindsym $mod+Shift+l 		move right 30 
-
-
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
-
-bindsym $mod+r mode "resize"
 
 # ===== Application ===== #
 # floating by default on some applications

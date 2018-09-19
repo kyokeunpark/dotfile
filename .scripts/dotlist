@@ -7,4 +7,5 @@
 ~/.config/polybar
 ~/.config/qutebrowser
 ~/.config/ranger
+~/.config/rofi
 ~/.scripts
