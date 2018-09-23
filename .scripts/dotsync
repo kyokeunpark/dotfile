@@ -5,8 +5,25 @@ REPO=~/Documents/i3_arch_rice/
 FILE=~/.scripts/dotlist
 LIST=`tr '\n' ' ' < $FILE | sed "s@~@$HOME@g"`
 
-for ITEM in $LIST
-do
-	DIR=`dirname "${ITEM}" | sed "s@$HOME@@g"`
-	cp -r $ITEM $REPO$DIR
-done
+# Checking the arguments 
+case "$1" in
+	push)
+		for ITEM in $LIST
+		do
+			DIR=`dirname "${ITEM}" | sed "s@$HOME@@g"`
+			cp -r $ITEM $REPO$DIR
+		done
+		;;
+	pull)
+		for ITEM in $LIST
+		do
+			DIR=`dirname "${ITEM}" | sed "s@$HOME@@g"`
+			cp -r $REPO$DIR
+		done
+		;;
+	*)
+		echo "Invalid argument. Exiting..."
+		exit 1
+		;;
+esac
+

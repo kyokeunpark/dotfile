@@ -33,7 +33,7 @@ font-0 = SourceCodePro:size=8;1
 font-1 = SourceCodePro:size=8;1
 font-2 = FontAwesome:size=10;1
 
-modules-left = i3 mpd
+modules-left = i3 spotify
 modules-right = pulseaudio home filesystem eth temperature date
 
 tray-position = right
@@ -117,6 +117,12 @@ icon-next = 
 
 label-song-maxlen = 25
 label-song-ellipsis = true
+
+[module/spotify]
+type = custom/script
+interval = 1
+format = <label>
+exec = python ~/.scripts/spotify_status.py -f '{artist} - {song}'
 
 [module/filesystem]
 type = internal/fs
