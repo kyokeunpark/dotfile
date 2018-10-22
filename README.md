@@ -7,11 +7,15 @@ My personal dotfiles for Arch + i3 setup
 - i3
 - polybar
 - rofi
+- dmenu
 - scrot
 - zsh
 - vim
 - rtv
 - qutebrowser
+- dunst
+- python
+- fcitx
 
 ## TODOs
 
@@ -19,7 +23,7 @@ My personal dotfiles for Arch + i3 setup
 - [x] Complete polybar config file 
 - [x] Setup rtv
 - [ ] Complete zsh config file 
-- [ ] Config qutebrowser
-- [ ] Rice rofi
+- [x] Config qutebrowser
+- [x] Rice rofi
 - [ ] Complete vimrc
 - [ ] Install ranger and modify config file 
