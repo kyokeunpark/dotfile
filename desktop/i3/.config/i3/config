@@ -1,49 +1,64 @@
 # ===== Basic Definitions ===== #
-gaps inner 15
-gaps outer 15
+gaps inner 10
+gaps outer 10
 for_window [class="^.*"] border pixel 2
 font pango:Overpass 10
 set $mod Mod4
-set $term --no-startup-id urxvt
-set $browser qutebrowser
+set $term --no-startup-id st
+set $browser firefox
 floating_modifier $mod
 set $shutdown shutdown -h now
 set $reboot shutdown -r now
-set $disp1 "DP-4"
-set $disp2 "DP-2"
+focus_follows_mouse no
 
 # ===== External Scripts ===== #
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id $HOME/.fehbg
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,pgp)&
 exec --no-startup-id compton -b --respect-prop-shadow
-exec --no-startup-id dropbox
 exec --no-startup-id indicator-sound-switcher -vv
-exec --no-startup-id clipit
 exec --no-startup-id fcitx
+exec --no-startup-id syncthing-gtk -m
+exec --no-startup-id udiskie --tray --use-udisks2
 
 # Scratchpad
 for_window [instance="dropdown"]	floating enable
-for_window [instance="dropbown"]	resize set 1280 800
+for_window [instance="dropdown"]	resize set 1280 800
 for_window [instance="dropdown"] 	move scratchpad
 for_window [instance="dropdown"]	border pixel 5
-exec --no-startup-id $term -name dropdown
+exec --no-startup-id $term -n dropdown
+
+for_window [instance="keepassxc"]	floating enable
+for_window [instance="keepassxc"]	resize set 1280 800
+for_window [instance="keepassxc"]	move scratchpad
+for_window [instance="keepassxc"]	border pixel 5
+exec --no-startup-id keepassxc
+
+for_window [instance="pavucontrol"]	floating enable
+for_window [instance="pavucontrol"]	resize set 1280 800
+for_window [instance="pavucontrol"]	move scratchpad
+for_window [instance="pavucontrol"]	border pixel 5
+exec --no-startup-id pavucontrol
 
 # ===== Basic Binding ===== #
-bindsym $mod+Return 		exec $term
-bindsym $mod+Shift+Return	exec ~/.scripts/samedir
-bindsym $mod+Ctrl+Escape	exec --no-startup-id ~/.scripts/prompt "Are you sure you want to leave i3?" "i3-msg exit"
-bindsym $mod+Shift+space 	floating toggle
-bindsym $mod+space 		focus mode_toggle
-bindsym Print			--release exec --no-startup-id scrot -e 'mv $f ~/Photos/ss'
-bindsym Shift+Print		--release exec --no-startup-id scrot -s -e 'mv $f ~/Photos/ss'
-bindsym $mod+semicolon			exec --no-startup-id rofimoji
+bindsym $mod+Return				exec --no-startup-id $term
+bindsym $mod+Shift+Return		exec --no-startup-id ~/.scripts/samedir
+bindsym $mod+Ctrl+Escape		exec --no-startup-id ~/.scripts/prompt "Are you sure you want to leave i3?" "i3-msg exit"
+bindsym $mod+Shift+space		floating toggle
+bindsym $mod+space				focus mode_toggle
+# bindsym Print					--release exec --no-startup-id maim -s ~/Pictures/ss/$(date +%m)_$(date +%d)_$(date +%s).png
+bindsym Print					--release exec --no-startup-id ~/.scripts/printscr -s ~/Pictures/ss
+bindsym Shift+Print				--release exec --no-startup-id ~/.scripts/printscr -e ~/Pictures/ss
+#bindsym Shift+Print				--release exec --no-startup-id maim ~/Pictures/ss/$(date +%m)_$(date +%d)_$(date +%s).png
+bindsym $mod+semicolon			exec --no-startup-id rofimoji --use-clipboard
 bindsym XF86AudioRaiseVolume 	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioPlay		exec --no-startup-id playerctl play-pause
-bindsym XF86AudioNext		exec --no-startup-id playerctl next
-bindsym XF86AudioPrev 		exec --no-startup-id playerctl previous
+bindsym XF86AudioMute			exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioPlay			exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext			exec --no-startup-id playerctl next
+bindsym XF86AudioPrev			exec --no-startup-id playerctl previous
+
+bindsym $mod+F2					restart
 
 # ===== Letter Key Bindings  ===== #
 bindsym $mod+a 			focus parent
@@ -54,26 +69,23 @@ bindsym $mod+d 			exec rofi -show run
 
 bindsym $mod+f 			fullscreen toggle
 
-bindsym $mod+Shift+i	exec --no-startup-id "bash ~/.scripts/i3resize down"
-
 bindsym $mod+m			exec --no-startup-id spotify
-bindsym $mod+Shift+m	exec --no-startup-id pavucontrol
+bindsym $mod+Shift+m	[instance="pavucontrol"] scratchpad show; [instance="pavucontrol"] move position center
+
+bindsym $mod+n			exec --no-startup-id nemo
 
 bindsym $mod+o			sticky toggle
-bindsym $mod+Shift+o	exec --no-startup-id "bash ~/.scripts/i3resize up"
 
-bindsym $mod+Shift+p	exec --no-startup-id "bash ~/.scripts/i3resize right"
+bindsym $mod+p			[instance="keepassxc"] scratchpad show; [instance="keepassxc"] move position center
 
-bindsym $mod+Shift+q 	kill
+bindsym $mod+q			kill
 
 bindsym $mod+r			exec $term -e ranger
-bindsym $mod+Shift+r 	restart
 bindsym $mod+Ctrl+r 	exec --no-startup-id ~/.scripts/prompt "Are you sure you want to reboot?" "$reboot"
 
 bindsym $mod+t			split toggle
 
-bindsym $mod+u			[instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
-bindsym $mod+Shift+u	exec --no-startup-id "bash ~/.scripts/i3resize left"
+bindsym $mod+u			[instance="dropdown"] scratchpad show; [instance="dropdown"] move position center 
 
 bindsym $mod+w			exec --no-startup-id $browser
 
@@ -117,21 +129,11 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# assigning each workspaces to the primary or secondary monitor (alternating)
-workspace $ws1 output $disp1
-workspace $ws3 output $disp1
-workspace $ws5 output $disp1
-workspace $ws7 output $disp1
-workspace $ws9 output $disp1
-workspace $ws2 output $disp2
-workspace $ws4 output $disp2
-workspace $ws6 output $disp2
-workspace $ws8 output $disp2
-workspace $ws10 output $disp2
-
-# workspace-specific gap size
-workspace $ws10 gaps inner 0
-workspace $ws10 gaps outer 50
+# resize windows
+bindsym $mod+Shift+y	exec --no-startup-id "bash i3resize left"
+bindsym $mod+Shift+u	exec --no-startup-id "bash i3resize down"
+bindsym $mod+Shift+i	exec --no-startup-id "bash i3resize up"
+bindsym $mod+Shift+o	exec --no-startup-id "bash i3resize right"
 
 # change focus
 bindsym $mod+h 			focus left
@@ -142,20 +144,17 @@ bindsym $mod+l 			focus right
 # move focused window
 bindsym $mod+Shift+h 		move left 30 
 bindsym $mod+Shift+j 		move down 30
-bindsym $mod+Shift+k 		move up 30
-bindsym $mod+Shift+l 		move right 30 
+bindsym $mod+Shift+k		move up 30
+bindsym $mod+Shift+l		move right 30
 
 # ===== Application ===== #
 # floating by default on some applications
 for_window [class="feh"]			floating enable
 for_window [class="Lxappearance"]	floating enable
 for_window [class="Pamac-manager"] 	floating enable
-for_window [class="Pavucontrol"]	floating enable
 for_window [class="Thunar"] 		floating enable
 for_window [class="mpv"]			floating enable
+for_window [class="Nemo"]			floating enable
 
-# default workspaces for some applications
-assign [class="Firefox"] 	$ws1
-assign [class="Franz"] 		$ws2
-assign [class="Discord"]	$ws2
-assign [class="Spotify"]	$ws10
+# Resize any floating application if needed
+for_window [class="Nemo"]			resize set 1280 720

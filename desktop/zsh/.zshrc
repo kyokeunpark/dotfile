@@ -62,22 +62,10 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+source ~/.zsh_aliases
+# source ~/.profile
 
-# User configuration
-
-alias ls='ls -a --color=auto'
-alias rtv='rtv --enable-media'
-alias df='cd ~/Documents/i3_arch_rice'
-
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
-
-export EDITOR='vim'
-export BROWSER='qutebrowser'
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/kyokeun/.scripts
+export PATH="/home/kyokeun/.scripts:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$PATH"

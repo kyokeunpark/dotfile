@@ -5,10 +5,9 @@ My personal dotfiles for Arch + i3 setup
 ## Usage
 
 ```
-cd ~
 git clone https://gitlab.com/kyokeun/i3_arch_rice.git
 cd i3_arch_rice/desktop (or x220. Depending on which machine's dotfile you would want to copy)
-stow * (or select certain apps that you would want to copy dotfile for)
+stow -t ~ * (or select certain apps that you would want to copy dotfile for)
 ```
 
 ## Programs used
