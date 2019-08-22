@@ -13,20 +13,17 @@ opt=$(getopt -o se -- "$1")
 echo $?
 [ $? -ne 0 ] && echo -e $ERRORMSG && exit 1
 eval set -- "$opt"
-while true; do
-	case "$1" in
-		-s)
-			maim -s $FULLPATH
-			;;
-		-e)
-			maim $FULLPATH
-			;;
-		--)
-			shift
-			break
-			;;
-	esac
-	shift
-done
+case "$1" in
+	-s)
+		maim -s $FULLPATH
+		;;
+	-e)
+		maim $FULLPATH
+		;;
+	--)
+		shift
+		break
+		;;
+esac
 
 cat $FULLPATH | xclip -selection clipboard -t image/png
