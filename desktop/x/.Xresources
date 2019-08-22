@@ -47,7 +47,7 @@ URxvt.letterSpace: 0
 *antialias:  true
 *autohint:   true
 
-Xft.dpi: 100
+Xft.dpi: 108
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
 Xft.hintstyle: hintfull
