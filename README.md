@@ -16,7 +16,7 @@ After this, make sure to install all of the vim plugins via `:PluginInstall`
 
 ## Programs used
 
-| Program | Description |
+| **Program** | **Description** |
 | ------- | ----------- |
 | i3-gaps |	WM of my choice |
 | polybar | status bar of my choice |
