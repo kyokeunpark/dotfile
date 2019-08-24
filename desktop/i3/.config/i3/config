@@ -52,7 +52,7 @@ bindsym $mod+space				focus mode_toggle
 bindsym Print					--release exec --no-startup-id ~/.scripts/printscr -s ~/Pictures/ss
 bindsym Shift+Print				--release exec --no-startup-id ~/.scripts/printscr -e ~/Pictures/ss
 #bindsym Shift+Print				--release exec --no-startup-id maim ~/Pictures/ss/$(date +%m)_$(date +%d)_$(date +%s).png
-bindsym $mod+semicolon			exec --no-startup-id rofimoji --use-clipboard
+bindsym $mod+semicolon			exec --no-startup-id rofi -show emoji -modi emoji
 bindsym XF86AudioRaiseVolume 	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute			exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle

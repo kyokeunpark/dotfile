@@ -21,12 +21,15 @@ After this, make sure to install all of the vim plugins via `:PluginInstall`
 | i3-gaps |	WM of my choice |
 | polybar | status bar of my choice |
 | rofi	  | application search software of my choice |
+| rofi-emoji | An emoji selector plugin for Rofi that copies the selected emoji to the clipboard |
 | maim	  | screenshot tool of my choice |
 | zsh	  | shell of my choice |
 | vim	  | text editor of my choice (dotfile still WIP) |
 | rtv	  | CLI reddit browser. Require Python, mailcap, xclip, and urlview to work properly |
 | dunst	  | notification software of my choice |
 | fcitx	  | input method framework of my choice |
+| fzf	  | commandline fuzzy finder |
+| rg	  | AKA ripgrep. Used with fzf |
 
 ## TODOs
 
@@ -39,4 +42,4 @@ After this, make sure to install all of the vim plugins via `:PluginInstall`
 - [ ] Complete vimrc
 - [ ] Install ranger and modify config file 
 - [ ] Talk about zsm interactive cd
-- [ ] Add fzf and ripgrep to the list of Program Used
+- [x] Add fzf and ripgrep to the list of Program Used
