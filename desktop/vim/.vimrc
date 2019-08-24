@@ -125,3 +125,6 @@
 
 " Toggle netrw
 	nnoremap <C-N> :Lexplore<CR>
+
+" Toggle fzf find
+	nnoremap <C-F> :Files<CR>
