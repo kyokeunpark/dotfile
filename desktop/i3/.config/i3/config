@@ -20,6 +20,8 @@ exec --no-startup-id indicator-sound-switcher -vv
 exec --no-startup-id fcitx
 exec --no-startup-id syncthing-gtk -m
 exec --no-startup-id udiskie --tray --use-udisks2
+exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
+exec --no-startup-id redshift-gtk
 
 # Scratchpad
 for_window [instance="dropdown"]	floating enable
