@@ -4,11 +4,15 @@ My personal dotfiles for Arch + i3 setup
 
 ## Usage
 
+To move all of the config files into your home directory:
+
 ```
 git clone https://gitlab.com/kyokeun/i3_arch_rice.git
 cd i3_arch_rice/desktop (or x220. Depending on which machine's dotfile you would want to copy)
 stow -t ~ * (or select certain apps that you would want to copy dotfile for)
 ```
+
+After this, make sure to install all of the vim plugins via `:PluginInstall`
 
 ## Programs used
 
@@ -34,3 +38,5 @@ stow -t ~ * (or select certain apps that you would want to copy dotfile for)
 - [x] Rice rofi
 - [ ] Complete vimrc
 - [ ] Install ranger and modify config file 
+- [ ] Talk about zsm interactive cd
+- [ ] Add fzf and ripgrep to the list of Program Used
