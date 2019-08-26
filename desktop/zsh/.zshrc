@@ -70,5 +70,3 @@ source ~/.zsh-interactive-cd.plugin.zsh
 
 export FZF_DEFAULT_OPTS="--layout=reverse --height=40%"
 export FZF_DEFAULT_COMMAND='rg --hidden -l --ignore-file ~/.rg_ignore ""'
-
-export PATH="/home/kyokeun/.scripts:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$PATH"
