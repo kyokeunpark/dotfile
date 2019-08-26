@@ -29,6 +29,10 @@ OUTPUT="$(sed 's|\\n$||' <<<"$OUTPUT")"
 
 # Show rofi prompt so that the user can select desired output
 SELECTED=$(echo -e "$OUTPUT" | rofi -dmenu -i -p "Select output")
+# If no choices were selected, just exit
+[ -z $SELECTED ] && exit 1
+
+# Parse through the selection
 SINK=$(awk '{print $1}' <<<"$SELECTED")
 DESC=$(sed "s|$SINK - ||" <<<"$SELECTED")
 
