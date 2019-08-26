@@ -1,0 +1,48 @@
+#!/bin/bash
+# Small bash script to make switching between audio output easier
+# Dependency: pacmd, rofi
+# Do note that this script can be modified to make it work with dmenu instead
+
+# Prevent bash script from creating a subshell
+# so that we can use $OUTPUT that has been modified within the while loop
+shopt -s lastpipe
+
+OUTPUT=""
+TIK=0
+
+# Grab all the active sink and parse out only important information
+pactl list sinks | grep -E 'Sink #|Description:' | while read line
+do
+	case $TIK in
+		0)
+			OUTPUT="$OUTPUT$(sed 's|Sink #||' <<<"$line")"
+			TIK=1
+			;;
+		1)
+			OUTPUT="$OUTPUT - $(sed 's|Description: ||' <<<"$line")\n"
+			TIK=0
+			#echo "$OUTPUT"
+			;;
+	esac
+done
+OUTPUT="$(sed 's|\\n$||' <<<"$OUTPUT")"
+
+# Show rofi prompt so that the user can select desired output
+SELECTED=$(echo -e "$OUTPUT" | rofi -dmenu -i -p "Select output")
+SINK=$(awk '{print $1}' <<<"$SELECTED")
+DESC=$(sed "s|$SINK - ||" <<<"$SELECTED")
+
+# Comment the line above and uncomment the line below to use dmenu instead
+# SINK=$(echo -e "$OUTPUT" | dmenu -i -p "Select output" | awk '{print $1}')
+
+# Set the default sink to the selected one as well as go through all the input
+# and change those sinks to the newly selected sink as well
+pactl set-default-sink $SINK
+pactl list sink-inputs | grep "Sink Input" | sed 's|Sink Input #||' | while read line
+do
+	pactl move-sink-input $line $SINK
+done
+
+# Finally, let the user know through notification
+notify-send --urgency=low --expire-time=3000 "Switched sound source to $SINK"\
+	"$DESC"
