@@ -3,13 +3,14 @@
 	set rtp+=~/.vim/bundle/Vundle.vim
 	call vundle#begin()
 		Plugin 'VundleVim/Vundle.vim'
+		Plugin 'morhetz/gruvbox'
 		Plugin 'junegunn/goyo.vim'
 		Plugin 'junegunn/fzf'
 		Plugin 'junegunn/fzf.vim'
 		Plugin 'mboughaba/i3config.vim'
 		Plugin 'godlygeek/tabular'
 		Plugin 'plasticboy/vim-markdown'
-		Plugin 'morhetz/gruvbox'
+		Plugin 'lervag/vimtex'
 	call vundle#end()
 
 " i3config detection (for i3config syntax)
@@ -20,6 +21,26 @@
 
 " Default fzf layout
 	let g:fzf_layout = { 'down': '~40%' }
+
+" Vimtex settings
+	let g:vimtex_view_method = 'zathura'
+
+    let g:vimtex_compiler_latexmk = {
+        \ 'backend' : 'jobs',
+        \ 'background' : 1,
+        \ 'build_dir' : '',
+        \ 'callback' : 1,
+        \ 'continuous' : 1,
+        \ 'executable' : 'latexmk',
+        \ 'hooks' : [],
+        \ 'options' : [
+        \   '-verbose',
+        \   '-file-line-error',
+        \   '-synctex=1',
+        \   '-interaction=nonstopmode',
+		\	'-xelatex',
+        \ ],
+        \}
 
 " ===== BASIC SETUP =====
 " Some basic setup
@@ -82,13 +103,6 @@
 
 " Make it so that netrw vertical splits to the right instead of left
 	let g:netrw_altv=1
-
-" Automatically open netrw in vertical split when entering Vim
-" 	augroup ProjectDrawer
-" 		autocmd!
-" 		autocmd VimEnter * :Lexplore
-" 		autocmd VimEnter * :wincmd p
-" 	augroup END
 
 " If netrw is the only buffer, close vim
 	augroup netrw_close
