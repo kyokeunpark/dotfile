@@ -11,6 +11,8 @@
 		Plugin 'godlygeek/tabular'
 		Plugin 'plasticboy/vim-markdown'
 		Plugin 'lervag/vimtex'
+        Plugin 'scrooloose/nerdcommenter'
+        Plugin 'tpope/vim-surround'
 	call vundle#end()
 
 " i3config detection (for i3config syntax)
@@ -77,7 +79,7 @@
 
 " Indentation
 	set softtabstop=4
-	set noexpandtab
+	set expandtab
 	set shiftwidth=4
 	set tabstop=4
 
