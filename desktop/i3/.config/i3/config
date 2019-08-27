@@ -162,3 +162,9 @@ for_window [class="System-config-printer"] floating enable
 
 # Resize any floating application if needed
 for_window [class="Nemo"]			resize set 1280 720
+
+# Start application on specific workspace
+assign [class="Thunderbird"]		$ws9
+
+# Autostart application
+exec --no-startup-id thunderbird
