@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# A UI for detecting and selecting all displays
+# Probes xrandr for connected displays and lets user select on to use.
+# User may also select "manual selection" which opens arandr
+
+# If multi-monitor is selected and there are two screens
+twoscreen()
+{
+	PRIMARY=$(echo "$screens" | dmenu -i -p "asdf")
+	SECONDARY=$(echo "$screens" | grep -v "$PRIMARY")
+	DIRECTION=$(printf "left\\nright" | dmenu -i -p "What side of $PRIMARY should $SECONDARY be on?")
+	xrandr --output "$PRIMARY" --auto --output "$SECONDARY" --"$DIRECTION"-of "$PRIMARY" --auto
+}
+
+# If multi-monitor is selected and there are more than two screens
+morescreen()
+{
+	PRIMARY=$(echo "$screens" | dmenu -i -p "asdf")
+	SECONDARY=$(echo "$screens" | grep -v "$PRIMARY" | dmenu -i -p "Select secondary display:")
+	DIRECTION=$(printf "left\\nright" | dmenu -i -p "What side of $PRIMARY should $SECONDARY be on?")
+	TERTIARY=$(echo "$screen" | grep -v "$PRIMARY" | grep -v "$SECONDARY" | dmenu -i -p "Select third display:")
+	xrandr --output "$PRIMARY" --auto --output "$SECONDARY" --"$DIRECTION"-of "$PRIMARY" --auto --output "$TERTIARY" --"$(printf "left\\nright" | grep -v "$DIRECTION")"-of "$PRIMARY" --auto
+}
+
+# Multi-monitor handler
+multimon()
+{
+	case "$(echo "$screens" | wc -l)" in
+		2) twoscreen ;;
+		*) morescreen ;;
+	esac
+}
+
+# Get all possible displays
+ALL=$(xrandr -q | grep "connected")
+
+# Get all connected screens
+screens=$(echo "$ALL" | grep " connected" | awk '{print $1}')
+
+# If only one screen, activate it and exit
+[ "$(echo "$screens" | wc -l)" -lt 2 ] && xrandr $(echo "$ALL" | awk '{print "--output", $1, "--auto"}' | tr '\n' ' ') || 
+
+# Get user choice including multi-monitor and manual selection:
+CHOSEN=$(printf "%s\\nmulti-monitor\\nmanual selection" "$screens" | dmenu -i -p "Select display arrangement:") &&
+	case "$CHOSEN" in
+		"manual selection") arandr ; exit ;;
+		"multi-monitor") multimon ;;
+		*) xrandr --output "$CHOSEN" --auto $(echo "$screens" | grep -v "$CHOSEN" | awk '{print "--output", $1, "--off"}' | tr '\n' ' ') ;;
+	esac
+
+# Fix feh background if screen size/arrangement has changed
+feh --bg-scale "$HOME/.scripts/wall.jpg"
