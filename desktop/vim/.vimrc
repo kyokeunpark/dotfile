@@ -104,13 +104,21 @@
 	let g:netrw_browse_split = 4
 
 " Make it so that netrw vertical splits to the right instead of left
-	let g:netrw_altv=1
+	let g:netrw_altv = 1
+
+" Hide dotfiles and gitignores
+    let g:netrw_list_hide = netrw_gitignore#Hide()
+    let g:netrw_list_hide .= ',\(\^\|\s\s\)\zs\.\S\+)'
 
 " If netrw is the only buffer, close vim
 	augroup netrw_close
 		autocmd!
 		autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw"|q|endif
 	augroup END
+
+" ===== CUSTOM COMMANDS =====
+" Make tags using ctags - this helps you trace through functions
+    command! MakeTag !ctags -R .
 
 " ===== KEY MAPPINGS =====
 " Set the leader key to space
@@ -140,7 +148,7 @@
 	nnoremap <leader>rr :source $MYVIMRC<CR>
 
 " Toggle netrw
-	nnoremap <C-N> :Lexplore<CR>
+	nnoremap <leader>nn :Lexplore<CR>
 
 " Toggle fzf find
 	nnoremap <C-F> :Files<CR>
