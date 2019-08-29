@@ -40,9 +40,23 @@
         \   '-file-line-error',
         \   '-synctex=1',
         \   '-interaction=nonstopmode',
-		\	'-xelatex',
+        \   '-xelatax',
         \ ],
         \}
+
+" Using Tabularize, make sure the tables are always aligned
+    inoremap <silent> <Bar> <Bar><Esc>:call <SID>align()<CR>a
+
+    function! s:align()
+        let p = '^\s*|\s.*\s|\s*$'
+        if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~#p || getline(line('.')+1) =~# p)
+            let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+            let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+            Tabularize/|/l1
+            normal! 0
+            call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+        endif
+    endfunction
 
 " ===== BASIC SETUP =====
 " Some basic setup
@@ -125,7 +139,9 @@
 	let mapleader = " "
 
 " Goyo (centered text) activated with <leader>+g
-	map <leader>g :Goyo \| set linebreak<CR>
+    if exists(":Goyo")
+        map <leader>g :Goyo \| set linebreak<CR>
+    endif
 	
 " Instead of switching b/w splits with ctrl-w then j, just ctrl-j
 	noremap <C-J> <C-W><C-J>
@@ -151,4 +167,12 @@
 	nnoremap <leader>nn :Lexplore<CR>
 
 " Toggle fzf find
-	nnoremap <C-F> :Files<CR>
+    if exists(":Files")
+        nnoremap <C-F> :Files<CR>
+    endif
+
+" Tabularize mapping
+    if exists(":Tabularize")
+        nmap <leader>a= :Tabularize /=<CR>
+        vmap <leader>a= :Tabularize /=<CR>
+    endif
