@@ -9,10 +9,11 @@
 		Plugin 'junegunn/fzf.vim'
 		Plugin 'mboughaba/i3config.vim'
 		Plugin 'godlygeek/tabular'
-		Plugin 'plasticboy/vim-markdown'
+        Plugin 'tpope/vim-commentary'
 		Plugin 'lervag/vimtex'
         Plugin 'scrooloose/nerdcommenter'
         Plugin 'tpope/vim-surround'
+        Plugin 'plasticboy/vim-markdown'
 	call vundle#end()
 
 " i3config detection (for i3config syntax)
@@ -139,9 +140,7 @@
 	let mapleader = " "
 
 " Goyo (centered text) activated with <leader>+g
-    if exists(":Goyo")
-        map <leader>g :Goyo \| set linebreak<CR>
-    endif
+    map <leader>g :Goyo \| set linebreak<CR>
 	
 " Instead of switching b/w splits with ctrl-w then j, just ctrl-j
 	noremap <C-J> <C-W><C-J>
@@ -167,9 +166,7 @@
 	nnoremap <leader>nn :Lexplore<CR>
 
 " Toggle fzf find
-    if exists(":Files")
-        nnoremap <C-F> :Files<CR>
-    endif
+    nnoremap <C-F> :Files<CR>
 
 " Tabularize mapping
     if exists(":Tabularize")
