@@ -17,7 +17,6 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id compton -b --respect-prop-shadow
 exec --no-startup-id fcitx
 exec --no-startup-id nm-applet
-# exec --no-startup-id xautolock -time 10 -locker lockscreen
 exec --no-startup-id blueman-applet
 exec --no-startup-id udiskie --tray --use-udisks2
 exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
@@ -45,7 +44,7 @@ bindsym $mod+Shift+space 	floating toggle
 bindsym $mod+space 		focus mode_toggle
 bindsym Print					--release exec --no-startup-id ~/.scripts/printscr -s ~/Photos/ss
 bindsym Shift+Print				--release exec --no-startup-id ~/.scripts/printscr -e ~/Photos/ss
-bindsym $mod+semicolon			exec --no-startup-id rofimoji --use-clipboard
+bindsym $mod+semicolon			exec --no-startup-id rofi -show emoji -modi emoji
 
 # ===== Function Binding ===== #
 bindsym $mod+F2			restart
@@ -58,8 +57,8 @@ bindsym XF86AudioMute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ t
 bindsym XF86AudioPlay		exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext		exec --no-startup-id playerctl next
 bindsym XF86AudioPrev 		exec --no-startup-id playerctl previous
-bindsym XF86MonBrightnessUp	exec xbacklight -inc 10
-bindsym XF86MonBrightnessDown	exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp	exec --no-startup-id ~/.scripts/brightnesscontrol up
+bindsym XF86MonBrightnessDown	exec --no-startup-id ~/.scripts/brightnesscontrol down
 
 # ===== Letter Key Bindings  ===== #
 bindsym $mod+a 			focus parent

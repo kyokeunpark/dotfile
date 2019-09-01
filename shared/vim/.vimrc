@@ -40,9 +40,23 @@
         \   '-file-line-error',
         \   '-synctex=1',
         \   '-interaction=nonstopmode',
-		\	'-xelatex',
+        \   '-xelatax',
         \ ],
         \}
+
+" Using Tabularize, make sure the tables are always aligned
+    inoremap <silent> <Bar> <Bar><Esc>:call <SID>align()<CR>a
+
+    function! s:align()
+        let p = '^\s*|\s.*\s|\s*$'
+        if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~#p || getline(line('.')+1) =~# p)
+            let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+            let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+            Tabularize/|/l1
+            normal! 0
+            call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+        endif
+    endfunction
 
 " ===== BASIC SETUP =====
 " Some basic setup
@@ -104,7 +118,11 @@
 	let g:netrw_browse_split = 4
 
 " Make it so that netrw vertical splits to the right instead of left
-	let g:netrw_altv=1
+	let g:netrw_altv = 1
+
+" Hide dotfiles and gitignores
+    let g:netrw_list_hide = netrw_gitignore#Hide()
+    let g:netrw_list_hide .= ',\(\^\|\s\s\)\zs\.\S\+)'
 
 " If netrw is the only buffer, close vim
 	augroup netrw_close
@@ -112,12 +130,18 @@
 		autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw"|q|endif
 	augroup END
 
+" ===== CUSTOM COMMANDS =====
+" Make tags using ctags - this helps you trace through functions
+    command! MakeTag !ctags -R .
+
 " ===== KEY MAPPINGS =====
 " Set the leader key to space
 	let mapleader = " "
 
 " Goyo (centered text) activated with <leader>+g
-	map <leader>g :Goyo \| set linebreak<CR>
+    if exists(":Goyo")
+        map <leader>g :Goyo \| set linebreak<CR>
+    endif
 	
 " Instead of switching b/w splits with ctrl-w then j, just ctrl-j
 	noremap <C-J> <C-W><C-J>
@@ -140,7 +164,15 @@
 	nnoremap <leader>rr :source $MYVIMRC<CR>
 
 " Toggle netrw
-	nnoremap <C-N> :Lexplore<CR>
+	nnoremap <leader>nn :Lexplore<CR>
 
 " Toggle fzf find
-	nnoremap <C-F> :Files<CR>
+    if exists(":Files")
+        nnoremap <C-F> :Files<CR>
+    endif
+
+" Tabularize mapping
+    if exists(":Tabularize")
+        nmap <leader>a= :Tabularize /=<CR>
+        vmap <leader>a= :Tabularize /=<CR>
+    endif
