@@ -55,7 +55,7 @@
    fixed-height: 		false;
    dynamic: 			true;
    scrollbar: 			false;
-   padding: 			10px;
+   padding: 			20px;
    background: 			@background;
 }
 
