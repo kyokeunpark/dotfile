@@ -8,7 +8,13 @@ After copying the git repo, simply run `install.sh desktop/x220`. Any
 conflicts that are found will be copied to `~/df_backup` so that you can 
 rollback without any worry.
 
-_Note_: install.sh requires `stow` to be installed in your system.
+_Note_: install.sh requires `stow` to be installed in your system. Also it 
+currently does not play well if you have your current dotfile stow'd as well.
+
+Furthermore, the current config uses [st](https://st.suckless.org/) as the 
+terminal of choice. You can check out my config of st 
+[here](https://gitlab.com/kyokeun/st), or just change the `$term` variable 
+within `.config/i3/config` to your terminal of choice.
 
 ## Programs used
 
