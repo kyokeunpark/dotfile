@@ -4,15 +4,11 @@ My personal dotfiles for Arch + i3 setup
 
 ## Usage
 
-To move all of the config files into your home directory:
+After copying the git repo, simply run `install.sh desktop/x220`. Any 
+conflicts that are found will be copied to `~/df_backup` so that you can 
+rollback without any worry.
 
-```
-git clone https://gitlab.com/kyokeun/i3_arch_rice.git
-cd i3_arch_rice/desktop (or x220. Depending on which machine's dotfile you would want to copy)
-stow -t ~ * (or select certain apps that you would want to copy dotfile for)
-```
-
-After this, make sure to install all of the vim plugins via `:PluginInstall`
+_Note_: install.sh requires `stow` to be installed in your system.
 
 ## Programs used
 
@@ -33,13 +29,15 @@ After this, make sure to install all of the vim plugins via `:PluginInstall`
 
 ## TODOs
 
-- [ ] Complete i3 config file
+- [x] Complete i3 config file
 - [x] Complete polybar config file 
 - [x] Setup rtv
 - [ ] Complete zsh config file 
 - [x] Config qutebrowser
 - [x] Rice rofi
 - [ ] Complete vimrc
-- [ ] Install ranger and modify config file 
+- [x] Install ranger and modify config file 
 - [ ] Talk about zsm interactive cd
 - [x] Add fzf and ripgrep to the list of Program Used
+- [x] Install script (maybe also install the programs used in the future?)
+- [ ] Uninstall script
