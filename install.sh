@@ -32,8 +32,8 @@ backup() {
     if [ "$OUTPUT" ]; then
         echo "Conflict detected. Backing up files..."
         for dir in $OUTPUT; do
-            mkdir -p "~/df_backup/"${dir}"" && \
-                mv "~/"${dir}"" "~/df_backup/"${dir}""
+            mkdir -p $(dirname ~/df_backup/"${dir}") && \
+                mv ~/"${dir}" ~/df_backup/"${dir}"
         done
         echo "The backed up files can be found at '~/df_backup'"
     fi
@@ -59,6 +59,7 @@ backup
 # Check for conflicts for the shared dotfiles
 cd ../shared
 backup
+cd ..
 
 # Finally, stow the dotfiles
 echo "Linking the dotfiles..."
