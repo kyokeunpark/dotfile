@@ -114,6 +114,9 @@
 	set switchbuf=useopen,usetab
 	set backspace=indent,eol,start
 
+" Setting filetype
+    au BufNewFile,BufRead *.md set filetype=markdown
+
 " Appearance
 	" Colorscheme
 	set background=dark
@@ -228,3 +231,11 @@
     nnoremap <leader>P :LspDefinition<CR>
     nnoremap <leader>b <C-^>
     nnoremap <leader>h :LspHover<CR>
+
+" Markdown filetype mapping
+    " Insert bold text using ctrl-b
+    autocmd Filetype markdown inoremap <C-B> ****<Esc>hi
+    autocmd Filetype markdown nnoremap <C-B> i****<Esc>h
+    " Insert italic text using ctrl-i
+    autocmd Filetype markdown inoremap <C-I> __<Esc>i
+    autocmd Filetype markdown nnoremap <C-I> i__<Esc>
