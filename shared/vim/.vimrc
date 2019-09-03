@@ -2,7 +2,7 @@
 " Setting up Vundle
 	set rtp+=~/.vim/bundle/Vundle.vim
 	call vundle#begin()
-		Plugin 'VundleVim/Vundle.vim'
+        Plugin 'VundleVim/Vundle.vim'
 		Plugin 'morhetz/gruvbox'
 		Plugin 'junegunn/goyo.vim'
 		Plugin 'junegunn/fzf'
@@ -14,6 +14,12 @@
         Plugin 'scrooloose/nerdcommenter'
         Plugin 'tpope/vim-surround'
         Plugin 'plasticboy/vim-markdown'
+        Plugin 'Shougo/deoplete.nvim'
+        Plugin 'roxma/nvim-yarp'
+        Plugin 'roxma/vim-hug-neovim-rpc'
+        Plugin 'prabirshrestha/async.vim'
+        Plugin 'prabirshrestha/vim-lsp'
+        Plugin 'lighttiger2505/deoplete-vim-lsp'
 	call vundle#end()
 
 " i3config detection (for i3config syntax)
@@ -44,6 +50,38 @@
         \   '-xelatax',
         \ ],
         \}
+
+" Deoplete settings
+    let g:deoplete#enable_at_startup = 1
+
+" LSP settings
+    let g:lsp_diagnostics_echo_cursor = 1
+    let g:lsp_signs_error = {'text': '✗'}
+    let g:lsp_signs_warning = {'text': '‼'}
+    highlight link LspErrorText GruvboxRedSign
+    highlight clear LspWarningLine
+
+    " C++/C
+    if executable('clangd')
+        au User lsp_setup call lsp#register_server({
+            \ 'name': 'clangd',
+            \ 'cmd': {server_info->['clangd', '-background-index']},
+            \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+            \ })
+    endif
+
+    " Python
+    if (executable('pyls'))
+        let s:pyls_path = fnamemodify(g:python_host_prog, ':h') . '/'. 'pyls'
+        augroup LspPython
+            autocmd!
+            autocmd User lsp_setup call lsp#register_server({
+          \ 'name': 'pyls',
+          \ 'cmd': {server_info->['pyls']},
+          \ 'whitelist': ['python']
+          \ })
+        augroup END
+    endif
 
 " Using Tabularize, make sure the tables are always aligned
     inoremap <silent> <Bar> <Bar><Esc>:call <SID>align()<CR>a
@@ -135,6 +173,10 @@
 " Make tags using ctags - this helps you trace through functions
     command! MakeTag !ctags -R .
 
+" Set spelling
+    command! Sp set spell spelllang=en_us
+    command! Nsp set nospell
+
 " ===== KEY MAPPINGS =====
 " Set the leader key to space
 	let mapleader = " "
@@ -179,3 +221,10 @@
         nmap <leader>a= :Tabularize /=<CR>
         vmap <leader>a= :Tabularize /=<CR>
     endif
+
+" LSP mapping
+    nnoremap <leader>d :LspDocumentDiagnostics<CR>
+    nnoremap <leader>p :LspPeekDefinition<CR>
+    nnoremap <leader>P :LspDefinition<CR>
+    nnoremap <leader>b <C-^>
+    nnoremap <leader>h :LspHover<CR>
