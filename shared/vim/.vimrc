@@ -36,7 +36,7 @@
     let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
     let g:pandoc#filetypes#pandoc_markdown = 0
     let g:pandoc#command#autoexec_on_writes = 1
-    let g:pandoc#command#autoexec_command = "Pandoc! pdf"
+    let g:pandoc#command#autoexec_command = "Pandoc pdf"
 
 " Vimtex settings
 	let g:vimtex_view_method = 'zathura'
