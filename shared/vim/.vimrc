@@ -14,6 +14,7 @@
         Plugin 'scrooloose/nerdcommenter'
         Plugin 'tpope/vim-surround'
         Plugin 'plasticboy/vim-markdown'
+        Plugin 'vim-pandoc/vim-pandoc'
         Plugin 'Shougo/deoplete.nvim'
         Plugin 'roxma/nvim-yarp'
         Plugin 'roxma/vim-hug-neovim-rpc'
@@ -30,6 +31,12 @@
 
 " Default fzf layout
 	let g:fzf_layout = { 'down': '~40%' }
+
+" Vim-pandoc settings
+    let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
+    let g:pandoc#filetypes#pandoc_markdown = 0
+    let g:pandoc#command#autoexec_on_writes = 1
+    let g:pandoc#command#autoexec_command = "Pandoc! pdf"
 
 " Vimtex settings
 	let g:vimtex_view_method = 'zathura'
@@ -237,5 +244,5 @@
     autocmd Filetype markdown inoremap <C-B> ****<Esc>hi
     autocmd Filetype markdown nnoremap <C-B> i****<Esc>h
     " Insert italic text using ctrl-i
-    autocmd Filetype markdown inoremap <C-I> __<Esc>i
-    autocmd Filetype markdown nnoremap <C-I> i__<Esc>
+    " autocmd Filetype markdown inoremap <C-I> __<Esc>i
+    " autocmd Filetype markdown nnoremap <C-I> i__<Esc>
