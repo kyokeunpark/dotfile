@@ -38,7 +38,8 @@ export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 export LC_ALL="en_US.UTF-8"
-export PATH=$PATH:~/.scripts:~/st
+export PATH=$PATH:~/.scripts:~/st:~/.local/bin
+VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
 
 setxkbmap -option ctrl:nocaps
 xinput --set-prop 'TPPS/2 IBM TrackPoint' 'libinput Accel Speed' -0.75

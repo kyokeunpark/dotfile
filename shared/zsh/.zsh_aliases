@@ -1,11 +1,15 @@
+export NOTETEMPLATE='~/Sync/Work/University/note_tp.md'
+
 # Program shortcut 
 	alias g='git'
 	alias ls='ls -a --color=auto'
 	alias rtv='rtv --enable-media'
 	alias v='vim'
+    alias nv='nvim'
 
 # Add sudo on some common commands that requrie sudo
 	alias sv='sudo vim'
+    alias snv='sudo nvim'
 	alias pm='sudo pacman'
 	alias sys='sudo systemctl'
 
@@ -26,3 +30,7 @@
 
 # Misc
 	alias szsh='source ~/.zshrc'
+
+    # Copy the note template onto the current directory and start writing
+    # Make sure not to overwrite existing 'note.md'
+    alias note="cp -n $NOTETEMPLATE ./note.md && nvim note.md"

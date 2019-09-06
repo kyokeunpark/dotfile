@@ -13,14 +13,17 @@
 		Plugin 'lervag/vimtex'
         Plugin 'scrooloose/nerdcommenter'
         Plugin 'tpope/vim-surround'
-        Plugin 'plasticboy/vim-markdown'
+        "Plugin 'plasticboy/vim-markdown'
         Plugin 'vim-pandoc/vim-pandoc'
+        Plugin 'vim-pandoc/vim-pandoc-syntax'
+        Plugin 'vim-pandoc/vim-pandoc-after'
         Plugin 'Shougo/deoplete.nvim'
         Plugin 'roxma/nvim-yarp'
         Plugin 'roxma/vim-hug-neovim-rpc'
         Plugin 'prabirshrestha/async.vim'
         Plugin 'prabirshrestha/vim-lsp'
         Plugin 'lighttiger2505/deoplete-vim-lsp'
+        Plugin 'konfekt/fastfold'
 	call vundle#end()
 
 " i3config detection (for i3config syntax)
@@ -34,9 +37,12 @@
 
 " Vim-pandoc settings
     let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
-    let g:pandoc#filetypes#pandoc_markdown = 0
     let g:pandoc#command#autoexec_on_writes = 1
     let g:pandoc#command#autoexec_command = "Pandoc pdf"
+    let g:pandoc#folding#level = 2
+    let g:pandoc#folding#mode = "relative"
+    "let g:pandoc#modules#disabled = ["folding", "keyboard", "completion"]
+    let g:pandoc#after#modules#enabled = ["fastfold"]
 
 " Vimtex settings
 	let g:vimtex_view_method = 'zathura'
@@ -60,6 +66,9 @@
 
 " Deoplete settings
     let g:deoplete#enable_at_startup = 1
+
+    " Disable Deoplete if dealing with markdown due to slowdown
+    au Filetype markdown let g:deoplete#enable_at_startup = 0
 
 " LSP settings
     let g:lsp_diagnostics_echo_cursor = 1
@@ -238,11 +247,3 @@
     nnoremap <leader>P :LspDefinition<CR>
     nnoremap <leader>b <C-^>
     nnoremap <leader>h :LspHover<CR>
-
-" Markdown filetype mapping
-    " Insert bold text using ctrl-b
-    autocmd Filetype markdown inoremap <C-B> ****<Esc>hi
-    autocmd Filetype markdown nnoremap <C-B> i****<Esc>h
-    " Insert italic text using ctrl-i
-    " autocmd Filetype markdown inoremap <C-I> __<Esc>i
-    " autocmd Filetype markdown nnoremap <C-I> i__<Esc>
