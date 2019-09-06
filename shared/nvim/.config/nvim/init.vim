@@ -128,7 +128,13 @@ call plug#end()
     set laststatus=2
     set switchbuf=useopen,usetab
     set backspace=indent,eol,start
-    set cot+=preview
+
+    " Make splitting occur on right and bottom
+    " This makes more intuitive sense compared to the default setting of vim
+    set splitbelow splitright
+
+    " exrc allows Vim to source the source file if it is in working dir
+    set exrc
 
 " ===== APPEARANCE
     " Colorscheme
@@ -152,12 +158,7 @@ call plug#end()
     set shiftwidth=4
     set tabstop=4
 
-    " Make splitting occur on right and bottom
-    " This makes more intuitive sense compared to the default setting of vim
-    set splitbelow splitright
-
-    " exrc allows Vim to source the source file if it is in working dir
-    set exrc
+    au VimLeave * set guicursor=a:hor25-blinkon175
 
 " ===== KEY MAPPINGS
     " Set the leader key to space
