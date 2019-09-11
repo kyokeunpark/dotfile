@@ -1,14 +1,22 @@
 # ===== Basic Definitions ===== #
-gaps inner 10
-gaps outer 0
-for_window [class="^.*"] border pixel 2
-font pango:Overpass 8
 set $mod Mod4
 set $term --no-startup-id st
 set $browser firefox
+set $browser2 chromium
 floating_modifier $mod
+focus_follows_mouse no
 set $shutdown shutdown -h now
 set $reboot shutdown -r now
+
+# ===== Appearance ====== #
+gaps inner 10
+gaps outer 0
+hide_edge_borders smart
+for_window [class="^.*"] border pixel 3
+font pango:Overpass 8
+
+# class                 border  backgr. text    indicator   child_border
+client.focused          #98971a #282828 #282828 #83a598     #98971a
 
 # ===== External Scripts ===== #
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
@@ -40,6 +48,7 @@ exec --no-startup-id keepassxc
 bindsym $mod+Return 		exec --no-startup-id $term
 bindsym $mod+Shift+Return	exec --no-startup-id samedir
 bindsym $mod+Ctrl+Escape	exec --no-startup-id prompt "Are you sure you want to leave i3?" "i3-msg exit"
+bindsym $mod+Tab            exec --no-startup-id wmfocus
 bindsym $mod+Shift+space 	floating toggle
 bindsym $mod+space 		focus mode_toggle
 bindsym Print					--release exec --no-startup-id ~/.scripts/printscr -s ~/Photos/ss
@@ -57,8 +66,6 @@ bindsym XF86AudioMute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ t
 bindsym XF86AudioPlay		exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext		exec --no-startup-id playerctl next
 bindsym XF86AudioPrev 		exec --no-startup-id playerctl previous
-# bindsym XF86MonBrightnessUp	exec --no-startup-id ~/.scripts/brightnesscontrol up
-# bindsym XF86MonBrightnessDown	exec --no-startup-id ~/.scripts/brightnesscontrol down
 bindsym XF86MonBrightnessUp     exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown   exec --no-startup-id xbacklight -dec 10
 
@@ -89,6 +96,7 @@ bindsym $mod+t			split toggle
 bindsym $mod+u			[instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
 
 bindsym $mod+w			exec --no-startup-id $browser
+bindsym $mod+Shift+w    exec --no-startup-id $browser2
 
 bindsym $mod+x			exec --no-startup-id betterlockscreen -l blur 0.5
 bindsym $mod+Ctrl+x		exec --no-startup-id prompt "Are you sure you want to shutdown?" "$shutdown"
