@@ -6,6 +6,7 @@ font pango:Overpass 10
 set $mod Mod4
 set $term --no-startup-id st
 set $browser firefox
+set $browser2 chromium
 floating_modifier $mod
 set $shutdown shutdown -h now
 set $reboot shutdown -r now
@@ -91,6 +92,7 @@ bindsym $mod+t			split toggle
 bindsym $mod+u			[instance="dropdown"] scratchpad show; [instance="dropdown"] move position center 
 
 bindsym $mod+w			exec --no-startup-id $browser
+bindsym $mod+Shift+w    exec --no-startup-id $browser2
 
 bindsym $mod+x			exec --no-startup-id ~/.scripts/lockscreen
 bindsym $mod+Ctrl+x		exec --no-startup-id ~/.scripts/prompt "Are you sure you want to shutdown?" "$shutdown"
