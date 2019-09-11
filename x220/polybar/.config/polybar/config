@@ -256,7 +256,7 @@ ramp-foreground = ${colors.foreground-alt}
 type = internal/battery
 battery = BAT0
 adapter = ADP1
-full-at = 85
+; full-at = 85
 
 format-charging = <animation-charging> <label-charging>
 format-charging-underline = ${xrdb:color3}
