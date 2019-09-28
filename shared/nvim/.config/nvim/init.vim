@@ -158,20 +158,16 @@ call plug#end()
     let g:gruvbox_italic = 1
 
     " Set the line number to absolute-relative number
-    set number
-    set relativenumber
+    set number relativenumber
 
     " Show dots for trailing whitespace and pipe for each tabs
-    set list lcs=trail:·,tab:\ \ 
+    set list lcs=trail:·,tab:>-
 
     " Highlight 80th column
     set cc=80
 
     " Indentation
-    set softtabstop=4
-    set noexpandtab
-    set shiftwidth=4
-    set tabstop=4
+	set noexpandtab tabstop=8 shiftwidth=4 softtabstop=0
 
     au VimLeave * set guicursor=a:hor25-blinkon175
 
