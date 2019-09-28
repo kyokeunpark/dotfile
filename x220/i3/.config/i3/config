@@ -7,6 +7,7 @@ floating_modifier $mod
 focus_follows_mouse no
 set $shutdown shutdown -h now
 set $reboot shutdown -r now
+set $resize_pt 3
 
 # ===== Appearance ====== #
 gaps inner 10
@@ -155,10 +156,10 @@ bindsym $mod+Shift+k 		move up 30
 bindsym $mod+Shift+l 		move right 30 
 
 # resize windows
-bindsym $mod+Shift+y		exec --no-startup-id "bash i3resize left"
-bindsym $mod+Shift+u		exec --no-startup-id "bash i3resize down"
-bindsym $mod+Shift+i		exec --no-startup-id "bash i3resize up"
-bindsym $mod+Shift+o		exec --no-startup-id "bash i3resize right"
+bindsym $mod+Shift+y		exec --no-startup-id "bash i3resize left $resize_pt"
+bindsym $mod+Shift+u		exec --no-startup-id "bash i3resize down $resize_pt"
+bindsym $mod+Shift+i		exec --no-startup-id "bash i3resize up $resize_pt"
+bindsym $mod+Shift+o		exec --no-startup-id "bash i3resize right $resize_pt"
 
 # ===== Application ===== #
 # floating by default on some applications
@@ -168,6 +169,7 @@ for_window [class="Pamac-manager"] 	floating enable
 for_window [class="Pavucontrol"]	floating enable
 for_window [class="mpv"]			floating enable
 for_window [class="Nemo"]			floating enable
+for_window [class="gnuplot_qt"]     floating enable
 
 # default workspaces for some applications
 #assign [class="Firefox"] 	$ws1
