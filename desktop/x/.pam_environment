@@ -4,3 +4,5 @@ XMODIFIERS=@im=fcitx
 PATH=${PATH}:${HOME}/.local/bin:${HOME}/.cabal:${HOME}/.scripts
 VISUAL=nvim
 EDITOR=nvim
+BROWSER=firefox
+TERMINAL=st

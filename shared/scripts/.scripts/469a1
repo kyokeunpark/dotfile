@@ -1,0 +1,5 @@
+#!/bin/bash
+
+DIR="/home/kyokeun/Documents"
+
+qemu-system-x86_64 -smp 4 -m 8G -accel kvm -vga qxl -hda $DIR/cs469.qcow2 -nic user,hostfwd=tcp::8022-:22

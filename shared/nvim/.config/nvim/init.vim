@@ -45,9 +45,11 @@ call plug#end()
     " Vimtex settings
     let g:vimtex_view_method = 'zathura'
     let g:vimtex_compiler_progname = 'nvr'
+    let g:vimtex_fold_enabled = 1
+    let g:tex_flavor = 'xelatex'
 
     let g:vimtex_compiler_latexmk = {
-        \ 'backend' : 'jobs',
+        \ 'backend' : 'nvim',
         \ 'background' : 1,
         \ 'build_dir' : '',
         \ 'callback' : 1,
@@ -59,8 +61,18 @@ call plug#end()
         \   '-file-line-error',
         \   '-synctex=1',
         \   '-interaction=nonstopmode',
-        \   '-xelatax',
         \ ],
+        \}
+
+    let g:vimtex_compiler_latexmk_engines = {
+        \ '_'                   : '-xelatex',
+        \ 'pdflatex'            : '-pdf',
+        \ 'dvipdfex'            : '-pdfdvi',
+        \ 'lualatex'            : '-lualatex',
+        \ 'xelatex'             : '-xelatex',
+        \ 'context (pdftex)'    : '-pdf -pdflatex=texexec',
+        \ 'context (luatex)'    : '-pdf -pdflatex=context',
+        \ 'context (xelatex)'   : '-pdf -pdflatex=''texexec --xtx''',
         \}
 
     " Deoplete settings
@@ -136,6 +148,9 @@ call plug#end()
     " exrc allows Vim to source the source file if it is in working dir
     set exrc
 
+	" Like a filthy-normie, enable mouse interaction for nvim
+	set mouse=a
+
 " ===== APPEARANCE
     " Colorscheme
     set background=dark
@@ -154,7 +169,7 @@ call plug#end()
 
     " Indentation
     set softtabstop=4
-    set expandtab
+    set noexpandtab
     set shiftwidth=4
     set tabstop=4
 
@@ -172,6 +187,10 @@ call plug#end()
 	noremap <C-K> <C-W><C-K>
 	noremap <C-L> <C-W><C-L>
 	noremap <C-H> <C-W><C-H>
+
+    " Nagivation is easier
+    noremap j gj
+    noremap k gk
 
     " Making copy/pasting texts easier
 	vnoremap <C-c> "+y
