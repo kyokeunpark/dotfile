@@ -34,3 +34,6 @@ export NOTETEMPLATE='~/Sync/Work/University/note_tp.md'
     # Copy the note template onto the current directory and start writing
     # Make sure not to overwrite existing 'note.md'
     alias note="cp -n $NOTETEMPLATE ./note.md && nvim note.md"
+
+    # Extract a compressed file, regardless of the extension
+    alias ext="/home/kyokeun/.scripts/extract"

@@ -169,6 +169,7 @@ for_window [class="Pamac-manager"] 	floating enable
 for_window [class="Pavucontrol"]	floating enable
 for_window [class="mpv"]			floating enable
 for_window [class="Nemo"]			floating enable
+for_window [class="gnuplot_qt"]     floating enable
 
 # default workspaces for some applications
 #assign [class="Firefox"] 	$ws1
