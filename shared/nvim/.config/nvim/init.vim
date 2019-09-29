@@ -18,6 +18,8 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'prabirshrestha/vim-lsp'
     Plug 'lighttiger2505/deoplete-vim-lsp'
     Plug 'konfekt/fastfold'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
     " i3config detection (for i3config syntax)
@@ -28,6 +30,11 @@ call plug#end()
 
     " Default fzf layout
     let g:fzf_layout = { 'down': '~40%' }
+
+    " vim-airpline settings
+    let g:airline_theme = 'gruvbox'
+    let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
+    let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
 
     " Vim-pandoc settings
     let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
@@ -79,6 +86,7 @@ call plug#end()
     let g:deoplete#enable_at_startup = 1
 
     " LSP settings
+    let g:lsp_diagnostics_enabled = 0
     let g:lsp_diagnostics_echo_cursor = 1
     let g:lsp_preview_keep_focus = 1
     let g:lsp_signs_enabled = 1
@@ -189,8 +197,8 @@ call plug#end()
     noremap k gk
 
     " Making copy/pasting texts easier
-	vnoremap <C-c> "+y
-	noremap <C-v> "+p
+	" vnoremap <C-c> "+y
+	" noremap <C-v> "+p
 
     " Tabbed editing
 	nnoremap <C-Left> :tabprevious<CR>
@@ -222,4 +230,10 @@ call plug#end()
     nnoremap <leader>p :LspPeekDefinition<CR>
     nnoremap <leader>P :LspDefinition<CR>
     nnoremap <leader>b <C-^>
-    nnoremap <leader>h :LspHover<CR>
+    " nnoremap <leader>h :LspHover<CR>
+
+    " Maneuver around buffers
+    nmap <leader>l :bnext<CR>
+    nmap <leader>h :bprevious<CR>
+    nmap <leader>q :bp <BAR> bd #<CR>
+    nmap <leader>bl :ls<CR>
