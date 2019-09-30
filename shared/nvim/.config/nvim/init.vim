@@ -210,8 +210,9 @@ call plug#end()
     " Reload vimr configuration file
     nnoremap <leader>rr :source $MYVIMRC<CR>
 
-    " Toggle fzf find
+    " FZF mappings
     nnoremap <C-F> :Files<CR>
+    nmap <leader>t :Tags 
 
     " Set ctrl-backspace to delete a word in insert mode
     " For some reason, just remapping <C-BS> to <C-W> does not work in terminal.
