@@ -1,5 +1,5 @@
 " ===== PLUGGED
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.local/share/nvim/plugged') 
     Plug 'morhetz/gruvbox'
     Plug 'junegunn/goyo.vim'
     Plug 'junegunn/fzf'
@@ -20,6 +20,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'konfekt/fastfold'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+    Plug 'simeji/winresizer'
 call plug#end()
 
     " i3config detection (for i3config syntax)
@@ -186,19 +187,25 @@ call plug#end()
     " Goyo (distraction-free text editor) activated with <leader>g
     map <leader>g :Goyo \| set linebreak<CR>
 
-    " Instead of switch b/w splits with ctrl-w then j, just ctrl-j
-	noremap <C-J> <C-W><C-J>
-	noremap <C-K> <C-W><C-K>
-	noremap <C-L> <C-W><C-L>
-	noremap <C-H> <C-W><C-H>
+    " Instead of switch b/w splits with ctrl-w then j, just alt-j
+    tnoremap <A-h> <C-\><C-N><C-w>h
+    tnoremap <A-j> <C-\><C-N><C-w>j
+    tnoremap <A-k> <C-\><C-N><C-w>k
+    tnoremap <A-l> <C-\><C-N><C-w>l
+    inoremap <A-h> <C-\><C-N><C-w>h
+    inoremap <A-j> <C-\><C-N><C-w>j
+    inoremap <A-k> <C-\><C-N><C-w>k
+    inoremap <A-l> <C-\><C-N><C-w>l
+    nnoremap <A-h> <C-w>h
+    nnoremap <A-j> <C-w>j
+    nnoremap <A-k> <C-w>k
+    nnoremap <A-l> <C-w>l
+
+    tnoremap <Esc> <C-\><C-n>
 
     " Nagivation is easier
     noremap j gj
     noremap k gk
-
-    " Making copy/pasting texts easier
-	" vnoremap <C-c> "+y
-	" noremap <C-v> "+p
 
     " Tabbed editing
 	nnoremap <C-Left> :tabprevious<CR>
@@ -212,6 +219,7 @@ call plug#end()
 
     " FZF mappings
     nnoremap <C-F> :Files<CR>
+    nmap <leader>b :Buffers<CR>
     nmap <leader>t :Tags 
 
     " Set ctrl-backspace to delete a word in insert mode
@@ -237,4 +245,4 @@ call plug#end()
     nmap <leader>l :bnext<CR>
     nmap <leader>h :bprevious<CR>
     nmap <leader>q :bp <BAR> bd #<CR>
-    nmap <leader>bl :ls<CR>
+    " nmap <leader>bl :ls<CR>
