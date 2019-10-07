@@ -10,7 +10,7 @@ set $reboot shutdown -r now
 set $resize_pt 3
 
 # ===== Appearance ====== #
-gaps inner 10
+gaps inner 5
 gaps outer 0
 hide_edge_borders smart
 for_window [class="^.*"] border pixel 3
@@ -45,18 +45,25 @@ for_window [instance="keepassxc"]	move scratchpad
 for_window [instance="keepassxc"]	border pixel 5
 exec --no-startup-id keepassxc
 
+for_window [instance="quick_note"]	floating enable
+for_window [instance="quick_note"]	resize set 800 640
+for_window [instance="quick_note"]	move scratchpad
+for_window [instance="quick_note"]	border pixel 5
+exec --no-startup-id $term -n quick_note nvim /home/kyokeun/Documents/quick_note.txt
+
 # ===== Basic Binding ===== #
 bindsym $mod+Return 		exec --no-startup-id $term
 bindsym $mod+Shift+Return	exec --no-startup-id samedir
 bindsym $mod+Ctrl+Escape	exec --no-startup-id prompt "Are you sure you want to leave i3?" "i3-msg exit"
-bindsym $mod+Tab            exec --no-startup-id wmfocus
+bindsym $mod+Tab		exec --no-startup-id wmfocus
 bindsym $mod+Shift+space 	floating toggle
 bindsym $mod+space 		focus mode_toggle
-bindsym Print					--release exec --no-startup-id ~/.scripts/printscr -s ~/Photos/ss
-bindsym Shift+Print				--release exec --no-startup-id ~/.scripts/printscr -e ~/Photos/ss
-bindsym $mod+semicolon			exec --no-startup-id rofi -show emoji -modi emoji
+bindsym Print			--release exec --no-startup-id ~/.scripts/printscr -s ~/Photos/ss
+bindsym Shift+Print		--release exec --no-startup-id ~/.scripts/printscr -e ~/Photos/ss
+bindsym $mod+semicolon		exec --no-startup-id rofi -show emoji -modi emoji
 
 # ===== Function Binding ===== #
+bindsym $mod+F1			[instance="quick_note"] scratchpad show; [instance="quick_note"] move position center
 bindsym $mod+F2			restart
 bindsym $mod+F3			exec --no-startup-id multimonitor
 
@@ -67,8 +74,8 @@ bindsym XF86AudioMute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ t
 bindsym XF86AudioPlay		exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext		exec --no-startup-id playerctl next
 bindsym XF86AudioPrev 		exec --no-startup-id playerctl previous
-bindsym XF86MonBrightnessUp     exec --no-startup-id xbacklight -inc 10
-bindsym XF86MonBrightnessDown   exec --no-startup-id xbacklight -dec 10
+bindsym XF86MonBrightnessUp	exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 10
 
 # ===== Letter Key Bindings  ===== #
 bindsym $mod+a 			focus parent
@@ -86,9 +93,9 @@ bindsym $mod+o			sticky toggle
 
 bindsym $mod+p			[instance="keepassxc"] scratchpad show; [instance="keepassxc"] move position center
 
-bindsym $mod+q 		kill
+bindsym $mod+q 			kill
 
-bindsym $mod+r				exec --no-startup-id $term -e ranger
+bindsym $mod+r			exec --no-startup-id $term -e ranger
 bindsym $mod+Shift+r 		exec --no-startup-id $term -e sudo ranger
 bindsym $mod+Ctrl+r 		exec --no-startup-id prompt "Are you sure you want to reboot?" "$reboot"
 
@@ -97,7 +104,7 @@ bindsym $mod+t			split toggle
 bindsym $mod+u			[instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
 
 bindsym $mod+w			exec --no-startup-id $browser
-bindsym $mod+Shift+w    exec --no-startup-id $browser2
+bindsym $mod+Shift+w		exec --no-startup-id $browser2
 
 bindsym $mod+x			exec --no-startup-id betterlockscreen -l blur 0.5
 bindsym $mod+Ctrl+x		exec --no-startup-id prompt "Are you sure you want to shutdown?" "$shutdown"

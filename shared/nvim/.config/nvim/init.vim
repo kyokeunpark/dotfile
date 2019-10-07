@@ -28,8 +28,25 @@ call plug#end()
         au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
     aug end
 
-    " Default fzf layout
+    " Fzf settings
     let g:fzf_layout = { 'down': '~40%' }
+    let g:fzf_layout = { 'window': 'enew' }
+    let g:fzf_layout = { 'window': '-tabnew' }
+    let g:fzf_layout = { 'window': '10new' }
+    let g:fzf_colors =
+    \ { 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
 
     " vim-airpline settings
     let g:airline_theme = 'gruvbox'
@@ -213,6 +230,7 @@ call plug#end()
     " FZF mappings
     nnoremap <C-F> :Files<CR>
     nmap <leader>t :Tags 
+    nmap <leader>bl :Buffers<CR>
 
     " Set ctrl-backspace to delete a word in insert mode
     " For some reason, just remapping <C-BS> to <C-W> does not work in terminal.
@@ -230,11 +248,11 @@ call plug#end()
     nnoremap <leader>d :LspDocumentDiagnostics<CR>
     nnoremap <leader>p :LspPeekDefinition<CR>
     nnoremap <leader>P :LspDefinition<CR>
-    nnoremap <leader>b <C-^>
+    " nnoremap <leader>b <C-^>
     " nnoremap <leader>h :LspHover<CR>
 
     " Maneuver around buffers
     nmap <leader>l :bnext<CR>
     nmap <leader>h :bprevious<CR>
     nmap <leader>q :bp <BAR> bd #<CR>
-    nmap <leader>bl :ls<CR>
+    " nmap <leader>bl :ls<CR>

@@ -53,7 +53,7 @@ URxvt.keysym.C-equal:		font-size:reset
 *antialias:  true
 *autohint:   true
 
-Xft.dpi: 96
+Xft.dpi: 84
 Xft.autohint: 0
 Xft.lcdfilter: lcdnone
 Xft.hintstyle: hintnone
