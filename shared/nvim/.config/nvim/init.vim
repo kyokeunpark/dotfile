@@ -104,7 +104,7 @@ call plug#end()
     let g:deoplete#enable_at_startup = 1
 
     " LSP settings
-    let g:lsp_diagnostics_enabled = 0
+    let g:lsp_diagnostics_enabled = 1
     let g:lsp_diagnostics_echo_cursor = 1
     let g:lsp_preview_keep_focus = 1
     let g:lsp_signs_enabled = 1
