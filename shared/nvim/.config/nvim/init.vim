@@ -104,7 +104,7 @@ call plug#end()
     let g:deoplete#enable_at_startup = 1
 
     " LSP settings
-    let g:lsp_diagnostics_enabled = 0
+    let g:lsp_diagnostics_enabled = 1
     let g:lsp_diagnostics_echo_cursor = 1
     let g:lsp_preview_keep_focus = 1
     let g:lsp_signs_enabled = 1
@@ -193,7 +193,7 @@ call plug#end()
     set cc=80
 
     " Indentation
-	set noexpandtab tabstop=8 shiftwidth=4 softtabstop=0
+	set noexpandtab tabstop=8 shiftwidth=8 softtabstop=0
 
     au VimLeave * set guicursor=a:hor25-blinkon175
 
@@ -238,7 +238,6 @@ call plug#end()
     nnoremap <C-F> :Files<CR>
     nmap <leader>b :Buffers<CR>
     nmap <leader>t :Tags 
-    nmap <leader>bl :Buffers<CR>
 
     " Set ctrl-backspace to delete a word in insert mode
     " For some reason, just remapping <C-BS> to <C-W> does not work in terminal.

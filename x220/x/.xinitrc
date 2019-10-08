@@ -42,6 +42,7 @@ export PATH=$PATH:~/.scripts:~/st:~/.local/bin
 VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
 
 setxkbmap -option ctrl:nocaps
+xset r rate 200 40
 xinput --set-prop 'TPPS/2 IBM TrackPoint' 'libinput Accel Speed' -0.75
 xinput --set-prop 'SynPS/2 Synaptics TouchPad' 'Device Enabled' 0
 
