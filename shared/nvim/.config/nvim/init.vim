@@ -239,7 +239,6 @@ call plug#end()
     nnoremap <C-F> :Files<CR>
     nmap <leader>b :Buffers<CR>
     nmap <leader>t :Tags 
-    nmap <leader>bl :Buffers<CR>
 
     " Set ctrl-backspace to delete a word in insert mode
     " For some reason, just remapping <C-BS> to <C-W> does not work in terminal.
