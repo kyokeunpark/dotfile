@@ -21,6 +21,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'simeji/winresizer'
+    Plug 'ronakg/quickr-cscope.vim'
 call plug#end()
 
     " i3config detection (for i3config syntax)
@@ -167,16 +168,15 @@ call plug#end()
     set laststatus=2
     set switchbuf=useopen,usetab
     set backspace=indent,eol,start
-
     " Make splitting occur on right and bottom
     " This makes more intuitive sense compared to the default setting of vim
     set splitbelow splitright
-
     " exrc allows Vim to source the source file if it is in working dir
     set exrc
-
-	" Like a filthy-normie, enable mouse interaction for nvim
-	set mouse=a
+    " Disable scratch window
+    set completeopt-=preview
+    " Like a filthy-normie, enable mouse interaction for nvim
+    set mouse=a
 
 " ===== APPEARANCE
     " Colorscheme
@@ -203,7 +203,7 @@ call plug#end()
     let mapleader = " "
 
     " Goyo (distraction-free text editor) activated with <leader>g
-    map <leader>g :Goyo \| set linebreak<CR>
+    map <leader>G :Goyo \| set linebreak<CR>
 
     " Instead of switch b/w splits with ctrl-w then j, just alt-j
     tnoremap <A-h> <C-\><C-N><C-w>h
@@ -231,6 +231,7 @@ call plug#end()
 
     " Escape out of insert/visual mode by typing "jj" 
     inoremap jj <ESC>
+    tnoremap jj <C-\><C-N>
 
     " Reload vimr configuration file
     nnoremap <leader>rr :source $MYVIMRC<CR>
@@ -251,6 +252,10 @@ call plug#end()
         nmap <leader>a= :Tabularize /=<CR>
         vmap <leader>a= :Tabularize /=<CR>
     endif
+
+    " Bring up built-in terminal
+    nnoremap <leader>~ :vsp term://zsh<CR>
+    nnoremap <leader>` :sp term://zsh<CR>
 
     " LSP mapping
     nnoremap <leader>d :LspDocumentDiagnostics<CR>
