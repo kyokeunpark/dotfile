@@ -168,18 +168,15 @@ call plug#end()
     set laststatus=2
     set switchbuf=useopen,usetab
     set backspace=indent,eol,start
-
     " Make splitting occur on right and bottom
     " This makes more intuitive sense compared to the default setting of vim
     set splitbelow splitright
-
     " exrc allows Vim to source the source file if it is in working dir
     set exrc
-
+    " Disable scratch window
     set completeopt-=preview
-
-	" Like a filthy-normie, enable mouse interaction for nvim
-	set mouse=a
+    " Like a filthy-normie, enable mouse interaction for nvim
+    set mouse=a
 
 " ===== APPEARANCE
     " Colorscheme
@@ -234,6 +231,7 @@ call plug#end()
 
     " Escape out of insert/visual mode by typing "jj" 
     inoremap jj <ESC>
+    tnoremap jj <C-\><C-N>
 
     " Reload vimr configuration file
     nnoremap <leader>rr :source $MYVIMRC<CR>
@@ -254,6 +252,10 @@ call plug#end()
         nmap <leader>a= :Tabularize /=<CR>
         vmap <leader>a= :Tabularize /=<CR>
     endif
+
+    " Bring up built-in terminal
+    nnoremap <leader>~ :vsp term://zsh<CR>
+    nnoremap <leader>` :sp term://zsh<CR>
 
     " LSP mapping
     nnoremap <leader>d :LspDocumentDiagnostics<CR>
