@@ -21,6 +21,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'simeji/winresizer'
+    Plug 'ronakg/quickr-cscope.vim'
 call plug#end()
 
     " i3config detection (for i3config syntax)
@@ -175,6 +176,8 @@ call plug#end()
     " exrc allows Vim to source the source file if it is in working dir
     set exrc
 
+    set completeopt-=preview
+
 	" Like a filthy-normie, enable mouse interaction for nvim
 	set mouse=a
 
@@ -203,7 +206,7 @@ call plug#end()
     let mapleader = " "
 
     " Goyo (distraction-free text editor) activated with <leader>g
-    map <leader>g :Goyo \| set linebreak<CR>
+    map <leader>G :Goyo \| set linebreak<CR>
 
     " Instead of switch b/w splits with ctrl-w then j, just alt-j
     tnoremap <A-h> <C-\><C-N><C-w>h
