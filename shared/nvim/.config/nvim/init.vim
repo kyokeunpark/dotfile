@@ -24,6 +24,10 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'ronakg/quickr-cscope.vim'
 call plug#end()
 
+    " Goyo configuration
+    autocmd! User GoyoEnter nested set eventignore=FocusGained
+    autocmd! User GoyoLeave nested set eventignore=
+
     " i3config detection (for i3config syntax)
     aug i3config_ft_detection
         au!
@@ -229,9 +233,9 @@ call plug#end()
 	nnoremap <C-Left> :tabprevious<CR>
 	nnoremap <C-Right> :tabnext<CR>
 
-    " Escape out of insert/visual mode by typing "jj" 
-    inoremap jj <ESC>
-    tnoremap jj <C-\><C-N>
+    " Escape out of insert/visual mode by typing "kj"
+    inoremap kj <ESC>
+    tnoremap kj <C-\><C-N>
 
     " Reload vimr configuration file
     nnoremap <leader>rr :source $MYVIMRC<CR>
