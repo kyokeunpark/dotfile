@@ -8,7 +8,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'godlygeek/tabular'
     Plug 'tpope/vim-commentary'
     Plug 'lervag/vimtex'
-    Plug 'scrooloose/nerdcommenter'
     Plug 'tpope/vim-surround'
     Plug 'vim-pandoc/vim-pandoc'
     Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -22,13 +21,13 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'vim-airline/vim-airline-themes'
     Plug 'simeji/winresizer'
     Plug 'ronakg/quickr-cscope.vim'
+    Plug 'scrooloose/nerdtree'
 call plug#end()
 
     " i3config detection (for i3config syntax)
-    aug i3config_ft_detection
-        au!
-        au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
-    aug end
+    " aug i3config_ft_detection
+    "     au!  au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
+    " aug end
 
     " Fzf settings
     let g:fzf_layout = { 'down': '~40%' }
@@ -177,12 +176,14 @@ call plug#end()
     set completeopt-=preview
     " Like a filthy-normie, enable mouse interaction for nvim
     set mouse=a
+    au! TermOpen * setlocal nonumber norelativenumber
 
 " ===== APPEARANCE
     " Colorscheme
     set background=dark
+    let g:gruvbox_italic=1
+    let g:gruvbox_contrast_dark='hard'
     colorscheme gruvbox
-    let g:gruvbox_italic = 1
 
     " Set the line number to absolute-relative number
     set number relativenumber
@@ -194,7 +195,7 @@ call plug#end()
     set cc=80
 
     " Indentation
-	set noexpandtab tabstop=8 shiftwidth=8 softtabstop=0
+    set noexpandtab tabstop=8 shiftwidth=8 softtabstop=0
 
     au VimLeave * set guicursor=a:hor25-blinkon175
 
@@ -204,6 +205,9 @@ call plug#end()
 
     " Goyo (distraction-free text editor) activated with <leader>g
     map <leader>G :Goyo \| set linebreak<CR>
+
+    " NerdTree toggle with Ctrl-M
+    map <C-L> :NERDTreeFocus<CR>
 
     " Instead of switch b/w splits with ctrl-w then j, just alt-j
     tnoremap <A-h> <C-\><C-N><C-w>h
@@ -226,12 +230,12 @@ call plug#end()
     noremap k gk
 
     " Tabbed editing
-	nnoremap <C-Left> :tabprevious<CR>
-	nnoremap <C-Right> :tabnext<CR>
+    nnoremap <C-Left> :tabprevious<CR>
+    nnoremap <C-Right> :tabnext<CR>
 
-    " Escape out of insert/visual mode by typing "jj" 
-    inoremap jj <ESC>
-    tnoremap jj <C-\><C-N>
+    " Escape out of insert/visual mode by typing "kj" 
+    inoremap kj <ESC>
+    tnoremap kj <C-\><C-N>
 
     " Reload vimr configuration file
     nnoremap <leader>rr :source $MYVIMRC<CR>
@@ -261,11 +265,8 @@ call plug#end()
     nnoremap <leader>d :LspDocumentDiagnostics<CR>
     nnoremap <leader>p :LspPeekDefinition<CR>
     nnoremap <leader>P :LspDefinition<CR>
-    " nnoremap <leader>b <C-^>
-    " nnoremap <leader>h :LspHover<CR>
 
     " Maneuver around buffers
     nmap <leader>l :bnext<CR>
     nmap <leader>h :bprevious<CR>
     nmap <leader>q :bp <BAR> bd #<CR>
-    " nmap <leader>bl :ls<CR>
