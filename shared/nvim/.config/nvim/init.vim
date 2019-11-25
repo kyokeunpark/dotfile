@@ -9,7 +9,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'godlygeek/tabular'
     Plug 'tpope/vim-commentary'
     Plug 'lervag/vimtex'
-    Plug 'scrooloose/nerdcommenter'
     Plug 'tpope/vim-surround'
     Plug 'vim-pandoc/vim-pandoc'
     Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -33,10 +32,9 @@ call plug#end()
     autocmd! User GoyoLeave nested set eventignore=
 
     " i3config detection (for i3config syntax)
-    aug i3config_ft_detection
-        au!
-        au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
-    aug end
+    " aug i3config_ft_detection
+    "     au!  au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
+    " aug end
 
     " Fzf settings
     let g:fzf_layout = { 'down': '~40%' }
@@ -213,6 +211,7 @@ call plug#end()
     set completeopt-=preview
     " Like a filthy-normie, enable mouse interaction for nvim
     set mouse=a
+
     " Disable numbering for terminal buffer
     au TermOpen * setlocal nonumber norelativenumber
 
@@ -234,6 +233,7 @@ call plug#end()
 
 " ===== APPEARANCE
     " Colorscheme
+<<<<<<< HEAD
     " set background=dark
     " let g:gruvbox_contrast_dark='hard'
     " let g:gruvbox_italic = 1
@@ -288,12 +288,8 @@ call plug#end()
     noremap k gk
 
     " Tabbed editing
-	nnoremap <C-Left> :tabprevious<CR>
-	nnoremap <C-Right> :tabnext<CR>
-
-    " Escape out of insert/visual mode by typing "kj"
-    " inoremap kj <ESC>
-    " tnoremap kj <C-\><C-N>
+    nnoremap <C-Left> :tabprevious<CR>
+    nnoremap <C-Right> :tabnext<CR>
 
     " Reload vimr configuration file
     nnoremap <leader>rr :source $MYVIMRC<CR>
@@ -323,8 +319,6 @@ call plug#end()
     nnoremap <leader>d :LspDocumentDiagnostics<CR>
     nnoremap <leader>p :LspPeekDefinition<CR>
     nnoremap <leader>P :LspDefinition<CR>
-    " nnoremap <leader>b <C-^>
-    " nnoremap <leader>h :LspHover<CR>
 
     " Maneuver around buffers
     nmap <leader>l :bnext<CR>
