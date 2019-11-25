@@ -1,6 +1,7 @@
 " ===== PLUGGED
 call plug#begin('~/.local/share/nvim/plugged') 
     Plug 'morhetz/gruvbox'
+    Plug 'joshdick/onedark.vim'
     Plug 'junegunn/goyo.vim'
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
@@ -233,10 +234,14 @@ call plug#end()
 
 " ===== APPEARANCE
     " Colorscheme
-    set background=dark
-    let g:gruvbox_contrast_dark='hard'
-    let g:gruvbox_italic = 1
-    colorscheme gruvbox
+    " set background=dark
+    " let g:gruvbox_contrast_dark='hard'
+    " let g:gruvbox_italic = 1
+    let g:airline_theme = 'onedark'
+    let g:onedark_hide_endofbuffer = 1
+    let g:onedark_terminal_italics = 1
+    let g:onedark_termcolors = 16
+    colorscheme onedark
 
     " Set the line number to absolute-relative number
     set number relativenumber
@@ -248,7 +253,7 @@ call plug#end()
     set cc=80
 
     " Indentation
-	set noexpandtab tabstop=8 shiftwidth=8 softtabstop=0
+    set noexpandtab tabstop=8 shiftwidth=8 softtabstop=0
 
     au VimLeave * set guicursor=a:hor25-blinkon175
 
