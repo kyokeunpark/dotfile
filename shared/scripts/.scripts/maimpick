@@ -1,0 +1,15 @@
+#!/bin/bash
+
+dir="/home/kyokeun/Pictures/ss"
+
+fullpath="$dir/$(date +%m)_$(date +%d)_$(date +%s).png"
+
+
+case "$(printf "a selected area\\ncurrent window\\nfull screen\\na selected area (copy)\\ncurrent window (copy)\\nfull screen (copy)" | rofi -dmenu -i -p "Screenshot prompt")" in
+	"a selected area") maim -s "$fullpath" ;;
+	"current window") maim -i "$(xdotool getactivewindow)" "$fullpath" ;;
+	"full screen") maim "$fullpath" ;;
+	"a selected area (copy)") maim -s | xclip -selection clipboard -t image/png ;;
+	"current window (copy)") maim -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png ;;
+	"full screen (copy)") maim | xclip -selection clipboard -t image/png ;;
+esac
