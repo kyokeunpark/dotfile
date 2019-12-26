@@ -1,5 +1,15 @@
 #! /bin/sh
 
+# Kill all of the old process
+killall sxhkd
+killall picom
+killall fcitx
+killall nm-applet
+killall blueman-applet
+killall udiskie
+killall syncthing-gtk
+
+# Respawn all of the daemons, applets, other misc processes
 sxhkd &
 ~/.config/polybar/launch.sh &
 picom -b --respect-prop-shadow -i 0.8 --vsync -D 5 &
@@ -17,6 +27,7 @@ xinput set-prop 'AlpsPS/2 ALPS DualPoint Stick' 'libinput Accel Speed' -0.5
 xinput set-prop 'AlpsPS/2 ALPS DualPoint TouchPad' 'libinput Natural Scrolling Enabled' 1
 xinput set-prop 'AlpsPS/2 ALPS DualPoint TouchPad' 'libinput Click Method Enabled' 0 1
 xset r rate 200 35
+xdo lower -N Polybar
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 
