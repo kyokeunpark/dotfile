@@ -8,6 +8,7 @@ killall nm-applet
 killall blueman-applet
 killall udiskie
 killall syncthing-gtk
+killall polkitd
 
 # Respawn all of the daemons, applets, other misc processes
 sxhkd &
@@ -16,8 +17,9 @@ picom -b --respect-prop-shadow -i 0.8 --vsync -D 5 &
 fcitx &
 nm-applet &
 blueman-applet &
-udiskie --tray --use-udisks2 &
-syncthing-gtk -m &
+udiskie --tray &
+syncthing-gtk --minimized &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 ~/.fehbg &
 
 xss-lock -- betterlockscreen -l blur 0.5 &
