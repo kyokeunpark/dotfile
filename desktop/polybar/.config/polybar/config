@@ -16,7 +16,7 @@ height = 24
 background = ${colors.background}
 foreground = ${colors.foreground}
 fixed-center = false
-; monitor = "DP-4"
+wm-restack = bspwm
 
 border-size=0
 border-color=#00000000
@@ -33,7 +33,7 @@ font-0 = SourceCodePro:size=8;1
 font-1 = SourceCodePro:size=8;1
 font-2 = FontAwesome:size=10;1
 
-modules-left = i3 spotify
+modules-left = bspwm spotify
 modules-right = pulseaudio home filesystem eth temperature date
 
 pseudo-transparency = true
@@ -72,6 +72,30 @@ modules-right = date
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
+
+[module/bspwm]
+type = internal/bspwm
+
+; Only show workspaces on the same output as the bar
+pin-workspaces = true
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${xrdb:color0}
+label-focused-underline = ${colors.primary}
+label-focused-padding = 2
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-occupied = %index%
+label-occupied-padding = 2
+
+label-empty = %index%
+label-empty-foreground = ${colors.foreground}
+label-empty-padding = 2
 
 [module/i3]
 type = internal/i3
