@@ -24,6 +24,8 @@ export NOTETEMPLATE='~/Sync/Work/University/note_tp.md'
 # Edit some config files
 	alias env='nvim ~/.config/nvim/init.vim'
 	alias ei3='nvim ~/.config/i3/config'
+	alias ebsp='nvim ~/.config/bspwm/bspwmrc'
+	alias esxh='nvim ~/.config/sxhkd/sxhkdrc'
 
 # Some commands that utilizes fzf and ripgrep
 	# Find a man page
