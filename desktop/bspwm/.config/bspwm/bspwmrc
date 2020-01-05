@@ -8,6 +8,7 @@ killall nm-applet
 killall udiskie
 killall syncthing-gtk
 killall polkitd
+killall birdtray
 
 # Respawn all of the daemons, applets, other misc processes
 sxhkd &
@@ -19,6 +20,7 @@ udiskie --tray &
 syncthing-gtk --minimized &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 ~/.fehbg &
+birdtray &
 
 xsetroot -cursor_name left_ptr
 xset r rate 200 35
