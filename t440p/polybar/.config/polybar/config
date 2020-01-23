@@ -1,13 +1,13 @@
 ; vim:ft=dosini
 
 [colors]
-background = #282c3400
+background = #88000000
 background-alt = #444
 foreground = ${xrdb:color7}
 foreground-alt = #555
 primary = ${xrdb:color3}
 secondary = ${xrdb:color5}
-alert = #e06C75
+alert = #bd2c40
 col = #00f
 
 [bar/Bar]
@@ -34,7 +34,7 @@ font-1 = SourceCodePro:size=8;1
 font-2 = FontAwesome:size=10;1
 
 modules-left = bspwm spotify
-modules-right = pulseaudio home filesystem eth temperature date
+modules-right = backlight pulseaudio filesystem temperature battery date
 
 pseudo-transparency = true
 tray-position = right
@@ -73,30 +73,6 @@ modules-right = date
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
-[module/bspwm]
-type = internal/bspwm
-
-; Only show workspaces on the same output as the bar
-pin-workspaces = true
-
-; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${xrdb:color0}
-label-focused-underline = ${colors.primary}
-label-focused-padding = 2
-
-; urgent = Workspace with urgency hint set
-label-urgent = %index%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-
-label-occupied = %index%
-label-occupied-padding = 2
-
-label-empty = %index%
-label-empty-foreground = ${colors.foreground}
-label-empty-padding = 2
-
 [module/i3]
 type = internal/i3
 format = <label-state><label-mode>
@@ -129,10 +105,33 @@ label-urgent = %index%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
+[module/bspwm]
+type = internal/bspwm
+
+; Only show workspaces on the same output as the bar
+pin-workspaces = true
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${xrdb:color0}
+label-focused-underline = ${colors.primary}
+label-focused-padding = 2
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-occupied = %index%
+label-occupied-padding = 2
+
+label-empty = %index%
+label-empty-foreground = ${colors.foreground}
+label-empty-padding = 2
+
 [module/mpd]
 type = internal/mpd
-
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+format-online = <label-song> <label-time>
 
 icon-prev = 
 icon-stop = 
@@ -140,6 +139,7 @@ icon-play = 
 icon-pause = 
 icon-next = 
 
+label-song = %artist% - %title%
 label-song-maxlen = 25
 label-song-ellipsis = true
 
@@ -174,7 +174,7 @@ interval = 5
 date = " %a, %b, %d, %Y"
 time = " at %I:%M%p"
 format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.foreground}
 format-underline = ${xrdb:color12}
 
 label = %date% %time%
@@ -187,7 +187,7 @@ label-volume = 
 label-volume-foreground = ${colors.foreground}
 
 format-muted-prefix = "  " 
-format-muted-foreground = ${colors.foreground-alt}
+format-muted-foreground = ${colors.foreground}
 label-muted = sound muted
 
 ; mapped = true
@@ -275,4 +275,40 @@ label-warn-foreground = ${colors.secondary}
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
+ramp-foreground = ${colors.foreground}
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+; full-at = 85
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${xrdb:color3}
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capcity-2 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${colors.foreground}
+animation-charging-framerate = 750
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+format = <label> <bar>
+label = 
+bar-width = 10
+bar-indicator = |
+bar-fill = =
+bar-empty = -

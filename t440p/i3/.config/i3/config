@@ -1,0 +1,189 @@
+# ===== Basic Definitions ===== #
+set $mod Mod4
+set $term --no-startup-id st
+set $browser firefox
+set $browser2 chromium
+floating_modifier $mod
+focus_follows_mouse no
+set $shutdown shutdown -h now
+set $reboot shutdown -r now
+set $resize_pt 3
+
+# ===== Appearance ====== #
+gaps inner 5
+gaps outer 0
+hide_edge_borders smart
+for_window [class="^.*"] border pixel 3
+font pango:Overpass 8
+
+# class                 border  backgr. text    indicator   child_border
+client.focused          #98971a #282828 #282828 #83a598     #98971a
+
+# ===== External Scripts ===== #
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id $HOME/.fehbg
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,pgp)&
+exec --no-startup-id picom -b --respect-prop-shadow
+exec --no-startup-id fcitx
+exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
+exec --no-startup-id udiskie --tray --use-udisks2
+exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
+exec --no-startup-id syncthing-gtk -m
+
+# exec_always --no-startup-id gnome-power-manager
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id gnome-flashback
+
+# Scratchpad
+for_window [instance="dropdown"]	floating enable
+for_window [instance="dropbown"]	resize set 800 640
+for_window [instance="dropdown"] 	move scratchpad
+for_window [instance="dropdown"]	border pixel 5
+exec --no-startup-id $term -n dropdown
+
+for_window [instance="keepassxc"]	floating enable
+for_window [instance="keepassxc"]	resize set 800 640
+for_window [instance="keepassxc"]	move scratchpad
+for_window [instance="keepassxc"]	border pixel 5
+exec --no-startup-id keepassxc
+
+for_window [instance="quick_note"]	floating enable
+for_window [instance="quick_note"]	resize set 800 640
+for_window [instance="quick_note"]	move scratchpad
+for_window [instance="quick_note"]	border pixel 5
+exec --no-startup-id $term -n quick_note nvim /home/kyokeun/Documents/quick_note.txt
+
+# ===== Basic Binding ===== #
+bindsym $mod+Return 		exec --no-startup-id $term
+bindsym $mod+Shift+Return	exec --no-startup-id samedir
+bindsym $mod+Ctrl+Escape	exec --no-startup-id prompt "Are you sure you want to leave i3?" "i3-msg exit"
+bindsym $mod+Tab		exec --no-startup-id wmfocus
+bindsym $mod+Shift+space 	floating toggle
+bindsym $mod+space 		focus mode_toggle
+bindsym Print			--release exec --no-startup-id ~/.scripts/printscr -s ~/Photos/ss
+bindsym Shift+Print		--release exec --no-startup-id ~/.scripts/printscr -e ~/Photos/ss
+bindsym $mod+semicolon		exec --no-startup-id rofi -show emoji -modi emoji
+
+# ===== Function Binding ===== #
+bindsym $mod+F1			[instance="quick_note"] scratchpad show; [instance="quick_note"] move position center
+bindsym $mod+F2			restart
+bindsym $mod+F3			exec --no-startup-id multimonitor
+
+# ===== Media Key Binding ===== #
+bindsym XF86AudioRaiseVolume 	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioPlay		exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext		exec --no-startup-id playerctl next
+bindsym XF86AudioPrev 		exec --no-startup-id playerctl previous
+bindsym XF86MonBrightnessUp	exec --no-startup-id sudo light -A 10
+bindsym XF86MonBrightnessDown	exec --no-startup-id sudo light -U 10
+
+# ===== Letter Key Bindings  ===== #
+bindsym $mod+a 			focus parent
+
+bindsym $mod+b			bar mode toggle
+
+bindsym $mod+d 			exec --no-startup-id rofi -lines 5 -width 40 -show run
+
+bindsym $mod+f 			fullscreen toggle
+
+bindsym $mod+m			exec --no-startup-id spotify
+bindsym $mod+Shift+m		exec --no-startup-id pavucontrol
+
+bindsym $mod+o			sticky toggle
+
+bindsym $mod+p			[instance="keepassxc"] scratchpad show; [instance="keepassxc"] move position center
+
+bindsym $mod+q 			kill
+
+bindsym $mod+r			exec --no-startup-id $term -e ranger
+bindsym $mod+Shift+r 		exec --no-startup-id $term -e sudo ranger
+bindsym $mod+Ctrl+r 		exec --no-startup-id prompt "Are you sure you want to reboot?" "$reboot"
+
+bindsym $mod+t			split toggle
+
+bindsym $mod+u			[instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
+
+bindsym $mod+w			exec --no-startup-id $browser
+bindsym $mod+Shift+w		exec --no-startup-id $browser2
+
+bindsym $mod+x			exec --no-startup-id betterlockscreen -l blur 0.5
+bindsym $mod+Ctrl+x		exec --no-startup-id prompt "Are you sure you want to shutdown?" "$shutdown"
+
+# ===== Workspace ===== #
+# Define workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# workspace-specific gap size
+workspace $ws10 gaps inner 0
+workspace $ws10 gaps outer 50
+
+# change focus
+bindsym $mod+h 			focus left
+bindsym $mod+j 			focus down
+bindsym $mod+k 			focus up
+bindsym $mod+l 			focus right
+
+# move focused window
+bindsym $mod+Shift+h 		move left 30 
+bindsym $mod+Shift+j 		move down 30
+bindsym $mod+Shift+k 		move up 30
+bindsym $mod+Shift+l 		move right 30 
+
+# resize windows
+bindsym $mod+Shift+y		exec --no-startup-id "bash i3resize left $resize_pt"
+bindsym $mod+Shift+u		exec --no-startup-id "bash i3resize down $resize_pt"
+bindsym $mod+Shift+i		exec --no-startup-id "bash i3resize up $resize_pt"
+bindsym $mod+Shift+o		exec --no-startup-id "bash i3resize right $resize_pt"
+
+# ===== Application ===== #
+# floating by default on some applications
+for_window [class="feh"]			floating enable
+for_window [class="Lxappearance"]	floating enable
+for_window [class="Pamac-manager"] 	floating enable
+for_window [class="Pavucontrol"]	floating enable
+for_window [class="mpv"]			floating enable
+for_window [class="Nemo"]			floating enable
+for_window [class="gnuplot_qt"]     floating enable
+for_window [class="openssh-askpass"] floating enable
+
+# default workspaces for some applications
+#assign [class="Firefox"] 	$ws1
+#assign [class="Franz"] 		$ws2
+#assign [class="Discord"]	$ws2
+#assign [class="Spotify"]	$ws10

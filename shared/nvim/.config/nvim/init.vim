@@ -1,6 +1,7 @@
 " ===== PLUGGED
 call plug#begin('~/.local/share/nvim/plugged') 
     Plug 'morhetz/gruvbox'
+    Plug 'joshdick/onedark.vim'
     Plug 'junegunn/goyo.vim'
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
@@ -191,7 +192,7 @@ call plug#end()
     set nocompatible
     filetype plugin indent on
     syntax on
-    set clipboard=unnamed
+    set clipboard+=unnamedplus
     set ttyfast
     " set lazyredraw
     set wildmenu
@@ -235,10 +236,14 @@ call plug#end()
 
 " ===== APPEARANCE
     " Colorscheme
-    set background=dark
-    let g:gruvbox_contrast_dark='hard'
-    let g:gruvbox_italic=1
-    colorscheme gruvbox
+    " set background=dark
+    " let g:gruvbox_contrast_dark='hard'
+    " let g:gruvbox_italic = 1
+    let g:airline_theme = 'onedark'
+    let g:onedark_hide_endofbuffer = 1
+    let g:onedark_terminal_italics = 1
+    let g:onedark_termcolors = 256
+    colorscheme onedark
 
     " Set the line number to absolute-relative number
     set number relativenumber

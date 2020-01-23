@@ -1,0 +1,48 @@
+#! /bin/sh
+
+# Kill all of the old process
+killall sxhkd
+killall picom
+killall fcitx
+killall nm-applet
+killall blueman-applet
+killall udiskie
+killall syncthing-gtk
+killall polkitd
+
+# Respawn all of the daemons, applets, other misc processes
+sxhkd &
+~/.config/polybar/launch.sh &
+picom -b --respect-prop-shadow -i 0.8 --vsync -D 5 &
+fcitx &
+nm-applet &
+blueman-applet &
+udiskie --tray &
+syncthing-gtk --minimized &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+~/.fehbg &
+
+xss-lock -- betterlockscreen -l blur 0.5 &
+xsetroot -cursor_name left_ptr
+xinput set-prop 'AlpsPS/2 ALPS DualPoint Stick' 'libinput Accel Profile Enabled' 0 0
+xinput set-prop 'AlpsPS/2 ALPS DualPoint Stick' 'libinput Accel Speed' -0.5
+xinput set-prop 'AlpsPS/2 ALPS DualPoint TouchPad' 'libinput Natural Scrolling Enabled' 1
+xinput set-prop 'AlpsPS/2 ALPS DualPoint TouchPad' 'libinput Click Method Enabled' 0 1
+xset r rate 200 35
+xdo lower -N Polybar
+
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+
+bspc config border_width         2
+bspc config window_gap          12
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      false
+bspc config automatic_scheme longest_side
+
+# BSPWM rules
+bspc rule -a Thunderbird desktop='^9'
+bspc rule -a feh state=floating
+bspc rule -a System-config-printer.py state=floating
+bspc rule -a Zathura state=tiled

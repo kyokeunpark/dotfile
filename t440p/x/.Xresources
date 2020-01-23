@@ -69,24 +69,27 @@ URxvt*scrollBar_right:   false
 
 URxvt*transparent:       false
 URxvt*shading:		 50
-URxvt*blurRadius: 	 25
+URxvt*blurRadius: 	 10
 
 URxvt*depth: 32
-URxvt.background: [80]#3E4452
+URxvt.background: [80]#232c31
 
-URxvt.font: xft:Source Code Pro:pixelsize=14
-URxvt.letterSpace: 0
+URxvt.inputMethod: ibus
+URxvt.font: xft:Source Code Pro:pixelsize=12,xft:DejaVu Sans:pixelsize=12
+URxvt.letterSpace: 1
+
+URxvt.font-size.step:		4
+URxvt.keysym.C-S-equal:		font-size:increase
+URxvt.keysym.C-S-minus:		font-size:decrease
+URxvt.keysym.C-equal:		font-size:reset
 
 *antialias:  true
 *autohint:   true
 
-Xft.dpi: 108
+Xft.dpi: 72
 Xft.autohint: 0
-Xft.lcdfilter: lcddefault
-Xft.hintstyle: hintfull
+Xft.lcdfilter: lcdnone
+Xft.hintstyle: hintnone
 Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
-
-! Rofi
-rofi.width: 25
