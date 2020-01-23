@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/kyokeun/.config/sway'
 let g:netrw_dirhist_2='/home/kyokeun/Documents/gkcomp'
 let g:netrw_dirhist_1='/home/kyokeun'
 let g:netrw_dirhist_0='/home/kyokeun/.scripts'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_7='/home/kyokeun/.vim/bundle'
 let g:netrw_dirhist_6='/home/kyokeun/.vim'
 let g:netrw_dirhist_5='/home/kyokeun'
 let g:netrw_dirhist_4='/home/kyokeun/Documents'
-let g:netrw_dirhist_3='/home/kyokeun/Documents/i3_arch_rice'

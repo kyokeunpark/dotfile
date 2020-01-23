@@ -230,6 +230,9 @@ call plug#end()
     " always show signcolumns
     set signcolumn=yes
 
+    " Haskell should not use tab indent
+    autocmd FileType haskell setlocal shiftwidth=4 softtabstop=4 expandtab
+
 " ===== APPEARANCE
     " Colorscheme
     set background=dark
