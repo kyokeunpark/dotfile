@@ -3,6 +3,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'morhetz/gruvbox'
     Plug 'joshdick/onedark.vim'
     Plug 'junegunn/goyo.vim'
+    Plug 'tikhomirov/vim-glsl'
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'mboughaba/i3config.vim'

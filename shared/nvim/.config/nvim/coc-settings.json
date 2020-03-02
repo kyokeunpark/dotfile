@@ -3,6 +3,7 @@
 	"diagnostic.virtualText": true,
 	"diagnostic.checkCurrentLine": true,
 	"signature.target": "echo",
+	"python.jediEnabled": false,
 	"languageserver": {
 		"bash": {
 			"command": "bash-language-server",
