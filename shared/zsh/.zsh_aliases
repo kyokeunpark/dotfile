@@ -46,3 +46,15 @@ export NOTETEMPLATE='~/Sync/Work/University/note_tp.md'
 
     # Extract a compressed file, regardless of the extension
     alias ext="/home/kyokeun/.scripts/extract"
+
+    # Toggle OpenVPN
+    tvpn()
+    {
+	    if (systemctl -q is-active openvpn-client@desktop-kyovpn.service); then
+		    echo "Turning off OpenVPN..."
+		    sudo systemctl stop openvpn-client@desktop-kyovpn.service
+	    else
+		    echo "Turning on OpenVPN..."
+		    sudo systemctl start openvpn-client@desktop-kyovpn.service
+	    fi
+    }

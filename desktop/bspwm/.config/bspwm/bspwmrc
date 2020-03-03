@@ -13,7 +13,7 @@ killall birdtray
 # Respawn all of the daemons, applets, other misc processes
 sxhkd &
 ~/.config/polybar/launch.sh &
-picom -b --respect-prop-shadow -i 0.8 --vsync -D 5 &
+picom -b --respect-prop-shadow -D 5 -f &
 fcitx &
 nm-applet &
 udiskie --tray &
@@ -42,6 +42,7 @@ bspc rule -a Thunderbird desktop='^9'
 bspc rule -a feh state=floating
 bspc rule -a System-config-printer.py state=floating
 bspc rule -a Zathura state=tiled
+bspc rule -a KeePassXC state=floating
 
 # dropdownname="dropdown"
 # bspc query -N -n .hidden >/dev/null || setsid $TERMINAL -n "$dropdownname" -e dropdown >/dev/null 2>&1 &

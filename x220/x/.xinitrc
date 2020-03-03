@@ -37,6 +37,8 @@ export TERMINAL="st"
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
+export XDG_SESSION_TYPE=wayland
+export GDK_BACKEND=x11
 export LC_ALL="en_US.UTF-8"
 export QT_QPA_PLATFORMTHEME=gtk2
 export PATH=$PATH:~/.scripts:~/st:~/.local/bin
@@ -47,7 +49,9 @@ xset r rate 200 40
 xinput --set-prop 'TPPS/2 IBM TrackPoint' 'libinput Accel Speed' -0.75
 xinput --set-prop 'SynPS/2 Synaptics TouchPad' 'Device Enabled' 0
 
-exec i3
+sway
+
+# exec i3
 
 #twm &
 #xclock -geometry 50x50-1+1 &
