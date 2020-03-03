@@ -27,6 +27,8 @@ XF86AudioLowerVolume
 	pactl set-sink-volume @DEFAULT_SINK@ -5%
 XF86AudioMute
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
+XF86AudioMicMute
+	pactl set-source-mute 1 toggle
 # Brightness up and down. Need sudo perm for some reason
 XF86MonBrightnessUp
 	sudo light -A 10
