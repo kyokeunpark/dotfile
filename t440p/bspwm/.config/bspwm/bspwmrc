@@ -41,8 +41,8 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      false
 bspc config automatic_scheme longest_side
 
-dropdownname="dropdown"
-bspc query -N -n .hidden >/dev/null || setsid $TERMINAL -n "$dropdownname" -e dropdown >/dev/null 2>&1 &
-bspc rule -a St:$dropdownname hidden=on
-bspc rule -a St:$dropdownname sticky=on
-bspc rule -a St:$dropdownname state=floating
+# BSPWM rules
+bspc rule -a Thunderbird desktop='^9'
+bspc rule -a feh state=floating
+bspc rule -a System-config-printer.py state=floating
+bspc rule -a Zathura state=tiled

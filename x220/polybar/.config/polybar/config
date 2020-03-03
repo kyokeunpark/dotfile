@@ -16,7 +16,7 @@ height = 24
 background = ${colors.background}
 foreground = ${colors.foreground}
 fixed-center = false
-monitor = LVDS-1
+; monitor = LVDS-1
 
 border-size=0
 border-color=#00000000
