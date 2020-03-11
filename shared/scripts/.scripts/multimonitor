@@ -7,7 +7,7 @@
 # If multi-monitor is selected and there are two screens
 twoscreen()
 {
-	PRIMARY=$(echo "$screens" | dmenu -i -p "asdf")
+	PRIMARY=$(echo "$screens" | rofi -dmenu -i -p "asdf")
 	SECONDARY=$(echo "$screens" | grep -v "$PRIMARY")
 	DIRECTION=$(printf "left\\nright" | dmenu -i -p "What side of $PRIMARY should $SECONDARY be on?")
 	xrandr --output "$PRIMARY" --auto --output "$SECONDARY" --"$DIRECTION"-of "$PRIMARY" --auto
@@ -16,10 +16,10 @@ twoscreen()
 # If multi-monitor is selected and there are more than two screens
 morescreen()
 {
-	PRIMARY=$(echo "$screens" | dmenu -i -p "asdf")
-	SECONDARY=$(echo "$screens" | grep -v "$PRIMARY" | dmenu -i -p "Select secondary display:")
-	DIRECTION=$(printf "left\\nright" | dmenu -i -p "What side of $PRIMARY should $SECONDARY be on?")
-	TERTIARY=$(echo "$screen" | grep -v "$PRIMARY" | grep -v "$SECONDARY" | dmenu -i -p "Select third display:")
+	PRIMARY=$(echo "$screens" | rofi -dmenu -i -p "asdf")
+	SECONDARY=$(echo "$screens" | grep -v "$PRIMARY" | rofi -dmenu -i -p "Select secondary display:")
+	DIRECTION=$(printf "left\\nright" | rofi -dmenu -i -p "What side of $PRIMARY should $SECONDARY be on?")
+	TERTIARY=$(echo "$screen" | grep -v "$PRIMARY" | grep -v "$SECONDARY" | rofi -dmenu -i -p "Select third display:")
 	xrandr --output "$PRIMARY" --auto --output "$SECONDARY" --"$DIRECTION"-of "$PRIMARY" --auto --output "$TERTIARY" --"$(printf "left\\nright" | grep -v "$DIRECTION")"-of "$PRIMARY" --auto
 }
 
@@ -36,7 +36,7 @@ multimon()
 # TODO: Currently only works with two monitors!!
 mirrored()
 {
-	PRIMARY=$(echo "$screens" | dmenu -i -p "asdf")
+	PRIMARY=$(echo "$screens" | rofi -dmenu -i -p "asdf")
 	SECONDARY=$(echo "$screens" | grep -v "$PRIMARY")
     xrandr --output "$PRIMARY" --auto --output "$SECONDARY" --auto --same-as "$PRIMARY"
 }
@@ -51,7 +51,7 @@ screens=$(echo "$ALL" | grep " connected" | awk '{print $1}')
 [ "$(echo "$screens" | wc -l)" -lt 2 ] && xrandr $(echo "$ALL" | awk '{print "--output", $1, "--auto"}' | tr '\n' ' ') || 
 
 # Get user choice including multi-monitor and manual selection:
-CHOSEN=$(printf "%s\\nmulti-monitor\\nmirrored\\nmanual selection" "$screens" | dmenu -i -p "Select display arrangement:") &&
+CHOSEN=$(printf "%s\\nmulti-monitor\\nmirrored\\nmanual selection" "$screens" | rofi -dmenu -i -p "Select display arrangement:") &&
 	case "$CHOSEN" in
 		"manual selection") arandr ; exit ;;
 		"multi-monitor") multimon ;;
@@ -60,4 +60,5 @@ CHOSEN=$(printf "%s\\nmulti-monitor\\nmirrored\\nmanual selection" "$screens" | 
 	esac
 
 # Fix feh background if screen size/arrangement has changed
-feh --bg-scale "$HOME/.scripts/wall.jpg"
+# feh --bg-scale "$HOME/.scripts/wall.jpg"
+~/.fehbg

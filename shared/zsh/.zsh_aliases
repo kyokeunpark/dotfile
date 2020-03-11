@@ -6,6 +6,9 @@ export NOTETEMPLATE='~/Sync/Work/University/note_tp.md'
 	alias rtv='rtv --enable-media'
 	alias v='vim'
 	alias nv='nvim'
+	alias zat='zathura'
+	alias anastart='source /opt/anaconda/bin/activate root'
+	alias anastop='source /opt/anaconda/bin/deactivate root'
 
 # Add sudo on some common commands that requrie sudo
 	alias sv='sudo vim'
