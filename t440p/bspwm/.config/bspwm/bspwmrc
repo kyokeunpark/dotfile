@@ -9,6 +9,9 @@ killall blueman-applet
 killall udiskie
 killall syncthing-gtk
 killall polkitd
+killall birdtray
+
+while pgrep -u $UID -x syncthing-gtk >/dev/null; do sleep 1; done
 
 # Respawn all of the daemons, applets, other misc processes
 sxhkd &
@@ -21,6 +24,7 @@ udiskie --tray &
 syncthing-gtk --minimized &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 ~/.fehbg &
+birdtray &
 
 xss-lock -- betterlockscreen -l blur 0.5 &
 xsetroot -cursor_name left_ptr
