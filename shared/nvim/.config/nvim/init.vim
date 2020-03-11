@@ -81,6 +81,10 @@ call plug#end()
     let g:vimtex_compiler_progname = 'nvr'
     let g:vimtex_fold_enabled = 1
     let g:tex_flavor = 'xelatex'
+    let g:vimtex_quickfix_ignore_filters = [
+	\'Underfull',
+	\'Overfull'
+	\]
 
     let g:vimtex_compiler_latexmk = {
         \ 'backend' : 'nvim',

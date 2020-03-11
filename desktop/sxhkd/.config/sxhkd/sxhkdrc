@@ -37,7 +37,7 @@ XF86MonBrightnessDown
 super + p
 	keepassxc
 super + r
-	$TERMINAL -n ranger -e ranger
+	$TERMINAL -T ranger ranger
 super + s
 	switchsound
 super + w
