@@ -3,13 +3,15 @@
 # Kill all of the old process
 killall sxhkd
 killall picom
-killall fcitx
 killall nm-applet
 killall udiskie
 killall syncthing-gtk
 killall polkitd
 killall birdtray
 killall redshift-gtk
+killall redshift
+
+while pgrep -u $UID -x syncthing-gtk >/dev/null; do sleep 1; done
 
 # Respawn all of the daemons, applets, other misc processes
 sxhkd &
