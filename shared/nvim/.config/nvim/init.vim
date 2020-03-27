@@ -362,6 +362,9 @@ call plug#end()
     nmap <silent> gi <Plug>(coc-implementation)
     nmap <silent> gr <Plug>(coc-references)
 
+    " Search for function definition through cscope
+    nmap <C-g> :cs find g 
+
     " Use K to show documentation in preview window
     nnoremap <silent> K :call <SID>show_documentation()<CR>
     " Use <c-space> to trigger completion.

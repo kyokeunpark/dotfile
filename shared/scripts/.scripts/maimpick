@@ -2,7 +2,7 @@
 
 dir="/home/kyokeun/Pictures/ss"
 
-fullpath="$dir/$(date +%m)_$(date +%d)_$(date +%s).png"
+fullpath="$dir/$(date +%s)_$(date +%m)_$(date +%d).png"
 
 if pidof -o %PPID -x "$0"; then
 	exit 0
