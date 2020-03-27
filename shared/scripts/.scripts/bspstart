@@ -1,0 +1,26 @@
+#!/bin/sh
+# Simple script to autostart programs upon boot
+
+run()
+{
+	[ ! $(pgrep $1) ] && $@&
+}
+
+# run polybar
+$HOME/.config/polybar/launch.sh &
+
+# Run feh to set the background
+$HOME/.fehbg &
+
+# Run Gnome keyring
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+run nm-applet
+run udiskie --tray
+run syncthing-gtk --minimized
+run redshift-gtk
+run udiskie --tray
+run polkitd
+run birdtray
+run firefox
+run picom -b --respect-prop-shadow -D 5 -f
