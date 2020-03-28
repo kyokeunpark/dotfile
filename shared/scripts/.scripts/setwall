@@ -1,0 +1,11 @@
+#!/bin/sh
+# Script to change wallpaper using feh and then applying wal to change
+# colorscheme to match the new wallpaper
+
+# Check if given parameter
+[ ! $1 ] && echo "Please provide a path to wallpaper" && exit 1
+[ ! -e "$1" ] && echo "Given file does not exist" && exit 1
+
+# Apply feh and then wal (if it exists and feh succeeds)
+feh --no-fehbg --bg-fill "$1" || exit 1
+type wal >/dev/null 2>&1 && wal -a 80 -i "$1" -t -s

@@ -1,5 +1,6 @@
 " ===== PLUGGED
 call plug#begin('~/.local/share/nvim/plugged') 
+    Plug 'dylanaraps/wal.vim'
     Plug 'morhetz/gruvbox'
     Plug 'joshdick/onedark.vim'
     Plug 'junegunn/goyo.vim'
@@ -58,7 +59,7 @@ call plug#end()
       \ 'header':  ['fg', 'Comment'] }
 
     " vim-airpline settings
-    let g:airline_theme = 'gruvbox'
+    " let g:airline_theme = 'gruvbox'
     let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
     let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
     let g:airline_powerline_fonts = 1
@@ -112,72 +113,6 @@ call plug#end()
         \ 'context (luatex)'    : '-pdf -pdflatex=context',
         \ 'context (xelatex)'   : '-pdf -pdflatex=''texexec --xtx''',
         \}
-
-    " Deoplete settings
-    " let g:deoplete#enable_at_startup = 1
-
-    " LSP settings
-    " let g:lsp_diagnostics_enabled = 1
-    " let g:lsp_diagnostics_echo_cursor = 1
-    " let g:lsp_preview_keep_focus = 1
-    " let g:lsp_signs_enabled = 1
-    " let g:lsp_signs_error = {'text': '✗'}
-    " let g:lsp_signs_warning = {'text': '‼'}
-    " highlight link LspErrorText GruvboxRedSign
-    " highlight clear LspWarningLine
-
-    " let g:python_host_prog = '/usr/bin/python2'
-    " let g:python3_host_prog = '/usr/bin/python3'
-
-    " let g:lsp_log_verbose = 1
-    " let g:lsp_log_file = expand('~/vim-lsp.log')
-
-    " " C++/C
-    " if executable('clangd')
-    "     au User lsp_setup call lsp#register_server({
-    "         \ 'name': 'clangd',
-    "         \ 'cmd': {server_info->['clangd', '-background-index']},
-    "         \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-    "         \ })
-    " endif
-
-    " " Python
-    " if (executable('pyls'))
-    "     let s:pyls_path = fnamemodify(g:python_host_prog, ':h') . '/'. 'pyls'
-    "     augroup LspPython
-    "         autocmd!
-    "         autocmd User lsp_setup call lsp#register_server({
-    "       \ 'name': 'pyls',
-    "       \ 'cmd': {server_info->['pyls']},
-    "       \ 'whitelist': ['python']
-    "       \ })
-    "     augroup END
-    " endif
-
-    " " Java
-" if executable('java') && filereadable(expand('~/lsp/eclipse.jdt.ls/plugins/org.eclipse.equinox.launcher_1.5.300.v20190213-1655.jar'))
-    " au User lsp_setup call lsp#register_server({
-	" \ 'name': 'eclipse.jdt.ls',
-	" \ 'cmd': {server_info->[
-	" \     'java',
-	" \     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-	" \     '-Dosgi.bundles.defaultStartLevel=4',
-	" \     '-Declipse.product=org.eclipse.jdt.ls.core.product',
-	" \     '-Dlog.level=NONE',
-	" \     '-Dlog.protocol=true',
-	" \     '-noverify',
-	" \     '-Xmx1G',
-	" \     '-Dfile.encoding=UTF-8',
-	" \     '-jar',
-	" \     expand('/home/kyokeun/lsp/eclipse.jdt.ls/plugins/org.eclipse.equinox.launcher_1.5.300.v20190213-1655.jar'),
-	" \     '-configuration',
-	" \     expand('/home/kyokeun/lsp/eclipse.jdt.ls/config_linux'),
-	" \     '-data',
-	" \     getcwd()
-	" \ ]},
-	" \ 'whitelist': ['java'],
-	" \ })
-" endif
 
     " Using Tabularize, make sure the tables are always aligned
     inoremap <silent> <Bar> <Bar><Esc>:call <SID>align()<CR>a
@@ -244,11 +179,11 @@ call plug#end()
     " set background=dark
     " let g:gruvbox_contrast_dark='hard'
     " let g:gruvbox_italic = 1
-    let g:airline_theme = 'onedark'
+    " let g:airline_theme = 'onedark'
     let g:onedark_hide_endofbuffer = 1
     let g:onedark_terminal_italics = 1
     let g:onedark_termcolors = 256
-    colorscheme onedark
+    colorscheme wal
 
     " Set the line number to absolute-relative number
     set number relativenumber

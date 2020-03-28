@@ -7,9 +7,9 @@
  */
 
 * {
-	accent: #61AFEF;
-	bckgrd: #282C34;
-	select: #3E4452;
+	accent: #abb2bf;
+	bckgrd: #0d0101;
+	select: #476b72;
 
 
 
