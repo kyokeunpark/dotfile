@@ -18,6 +18,7 @@ $HOME/.fehbg &
 # Run wal
 wal -R
 
+run sxhkd
 run nm-applet
 run udiskie --tray
 run syncthing-gtk --minimized
