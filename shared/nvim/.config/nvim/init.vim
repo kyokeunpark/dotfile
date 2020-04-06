@@ -180,9 +180,9 @@ call plug#end()
     " let g:gruvbox_contrast_dark='hard'
     " let g:gruvbox_italic = 1
     " let g:airline_theme = 'onedark'
-    let g:onedark_hide_endofbuffer = 1
-    let g:onedark_terminal_italics = 1
-    let g:onedark_termcolors = 256
+    " let g:onedark_hide_endofbuffer = 1
+    " let g:onedark_terminal_italics = 1
+    " let g:onedark_termcolors = 256
     colorscheme wal
 
     " Set the line number to absolute-relative number
