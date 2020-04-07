@@ -16,10 +16,10 @@ $HOME/.fehbg &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # Run wal
-wal -R
+wal -R &
 
 # Run sxhkd -- keyboard dbus daemon
-sxhkd
+sxhkd &
 
 run nm-applet
 run udiskie --tray
