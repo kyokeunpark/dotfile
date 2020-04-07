@@ -33,7 +33,7 @@ font-0 = SourceCodePro:size=8;1
 font-1 = SourceCodePro:size=8;1
 font-2 = FontAwesome:size=10;1
 
-modules-left = bspwm spotify
+modules-left = bspwm spotifyd
 modules-center = xwindow
 modules-right = pulseaudio home filesystem eth temperature date
 
@@ -84,6 +84,12 @@ type = custom/script
 interval = 1
 format = <label>
 exec = python ~/.scripts/spotify_status.py -f '{artist} - {song}'
+
+[module/spotifyd]
+type = custom/script
+interval = 1
+format = <label>
+exec = ~/.scripts/spotifyd_status
 
 [module/filesystem]
 type = internal/fs

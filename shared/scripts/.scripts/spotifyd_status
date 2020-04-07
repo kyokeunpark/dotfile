@@ -1,0 +1,5 @@
+#!/bin/sh
+
+OUT=$(playerctl metadata -p spotifyd --format '{{ status }} {{ artist }} - {{ title }}')
+
+[ $? = 0 ] && echo "$OUT"
