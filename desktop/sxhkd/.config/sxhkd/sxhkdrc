@@ -48,6 +48,8 @@ super + x
 	lockscreen
 Print
 	maimpick
+shift + Print
+	peek
 
 # ===== SHUTDOWN / RESTART ===== #
 super + ctrl + r
@@ -122,6 +124,10 @@ super + {o,i}
 	bspc wm -h off; \
 	bspc node {older,newer} -f; \
 	bspc wm -h on
+
+# rotate the tree 90 deg
+super + shift + r
+	bspc node @parent -R 90
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}

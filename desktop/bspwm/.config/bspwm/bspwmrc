@@ -24,3 +24,4 @@ bspc rule -a feh state=floating
 bspc rule -a System-config-printer.py state=floating
 bspc rule -a Zathura state=tiled
 bspc rule -a KeePassXC state=floating
+bspc rule -a Peek state=floating

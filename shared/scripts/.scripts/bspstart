@@ -29,4 +29,4 @@ run udiskie --tray
 run polkitd
 run birdtray
 run firefox
-run picom -b --respect-prop-shadow -D 5 -f --blur-method dual_kawase --blur-strength 5 --experimental-backends
+run picom -b --respect-prop-shadow -D 5 -f --experimental-backends

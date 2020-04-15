@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Add the following line in /etc/crontab
+# * * * * * root /home/kyokeun/.scripts/spotifyd_status
+#
+
+status=$(systemctl --user status spotifyd | grep -E "(WARN|ERROR|101)")
+
+[ ! -z "$status" ] && systemctl --user restart spotifyd

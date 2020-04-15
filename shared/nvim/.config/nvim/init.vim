@@ -15,16 +15,15 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'vim-pandoc/vim-pandoc'
     Plug 'vim-pandoc/vim-pandoc-syntax'
     Plug 'vim-pandoc/vim-pandoc-after'
-    Plug 'Shougo/deoplete.nvim'
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
-    Plug 'lighttiger2505/deoplete-vim-lsp'
     Plug 'konfekt/fastfold'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'simeji/winresizer'
     Plug 'ronakg/quickr-cscope.vim'
     Plug 'scrooloose/nerdtree'
+    Plug 'ryanoasis/vim-devicons'
     Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
@@ -32,11 +31,6 @@ call plug#end()
     " Goyo configuration
     autocmd! User GoyoEnter nested set eventignore=FocusGained
     autocmd! User GoyoLeave nested set eventignore=
-
-    " i3config detection (for i3config syntax)
-    " aug i3config_ft_detection
-    "     au!  au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
-    " aug end
 
     " Fzf settings
     let g:fzf_layout = { 'down': '~40%' }
@@ -59,10 +53,10 @@ call plug#end()
       \ 'header':  ['fg', 'Comment'] }
 
     " vim-airpline settings
-    " let g:airline_theme = 'gruvbox'
     let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
     let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
     let g:airline_powerline_fonts = 1
+    let g:airline_theme='base16color'
 
     " Vim-pandoc settings
     let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
@@ -176,14 +170,9 @@ call plug#end()
 
 " ===== APPEARANCE
     " Colorscheme
-    " set background=dark
-    " let g:gruvbox_contrast_dark='hard'
-    " let g:gruvbox_italic = 1
-    " let g:airline_theme = 'onedark'
-    " let g:onedark_hide_endofbuffer = 1
-    " let g:onedark_terminal_italics = 1
-    " let g:onedark_termcolors = 256
     colorscheme wal
+
+    set encoding=UTF-8
 
     " Set the line number to absolute-relative number
     set number relativenumber
@@ -229,6 +218,9 @@ call plug#end()
     noremap j gj
     noremap k gk
 
+    " Close quickfix window
+    noremap <C-x> :ccl<CR>
+
     " Tabbed editing
     nnoremap <C-Left> :tabprevious<CR>
     nnoremap <C-Right> :tabnext<CR>
@@ -256,11 +248,6 @@ call plug#end()
     " Bring up built-in terminal
     nnoremap <leader>~ :vsp term://zsh<CR>
     nnoremap <leader>` :sp term://zsh<CR>
-
-    " LSP mapping
-    nnoremap <leader>d :LspDocumentDiagnostics<CR>
-    nnoremap <leader>p :LspPeekDefinition<CR>
-    nnoremap <leader>P :LspDefinition<CR>
 
     " Maneuver around buffers
     nmap <leader>l :bnext<CR>
@@ -297,9 +284,6 @@ call plug#end()
     nmap <silent> gi <Plug>(coc-implementation)
     nmap <silent> gr <Plug>(coc-references)
 
-    " Search for function definition through cscope
-    nmap <C-g> :cs find g 
-
     " Use K to show documentation in preview window
     nnoremap <silent> K :call <SID>show_documentation()<CR>
     " Use <c-space> to trigger completion.
@@ -331,15 +315,6 @@ call plug#end()
       autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
     augroup end
 
-    " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-    xmap <leader>a  <Plug>(coc-codeaction-selected)
-    nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-    " Remap for do codeAction of current line
-    nmap <leader>ac  <Plug>(coc-codeaction)
-    " Fix autofix problem of current line
-    " nmap <leader>qf  <Plug>(coc-fix-current)
-
     " Create mappings for function text object, requires document symbols feature of languageserver.
     xmap if <Plug>(coc-funcobj-i)
     xmap af <Plug>(coc-funcobj-a)
@@ -361,3 +336,6 @@ call plug#end()
 
     " Add status line support, for integration with other plugin, checkout `:h coc-status`
     set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+    " Cscope related
+    nmap <C-g> :cscope find g 

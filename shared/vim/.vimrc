@@ -17,14 +17,13 @@
         Plugin 'vim-pandoc/vim-pandoc'
         Plugin 'vim-pandoc/vim-pandoc-syntax'
         Plugin 'vim-pandoc/vim-pandoc-after'
-        Plugin 'Shougo/deoplete.nvim'
-        Plugin 'roxma/nvim-yarp'
-        Plugin 'roxma/vim-hug-neovim-rpc'
-        Plugin 'prabirshrestha/async.vim'
-        Plugin 'prabirshrestha/vim-lsp'
-        Plugin 'lighttiger2505/deoplete-vim-lsp'
         Plugin 'konfekt/fastfold'
+        Plugin 'itchyny/lightline.vim'
 	call vundle#end()
+
+let g:lightline = {
+    \ 'colorscheme': 'wal',
+    \ }
 
 " i3config detection (for i3config syntax)
 	aug i3config_ft_detection
@@ -70,49 +69,6 @@
     " Disable Deoplete if dealing with markdown due to slowdown
     au Filetype markdown let g:deoplete#enable_at_startup = 0
 
-" LSP settings
-    let g:lsp_diagnostics_echo_cursor = 1
-    let g:lsp_signs_error = {'text': '✗'}
-    let g:lsp_signs_warning = {'text': '‼'}
-    highlight link LspErrorText GruvboxRedSign
-    highlight clear LspWarningLine
-
-    " C++/C
-    if executable('clangd')
-        au User lsp_setup call lsp#register_server({
-            \ 'name': 'clangd',
-            \ 'cmd': {server_info->['clangd', '-background-index']},
-            \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-            \ })
-    endif
-
-    " Python
-    if (executable('pyls'))
-        let s:pyls_path = fnamemodify(g:python_host_prog, ':h') . '/'. 'pyls'
-        augroup LspPython
-            autocmd!
-            autocmd User lsp_setup call lsp#register_server({
-          \ 'name': 'pyls',
-          \ 'cmd': {server_info->['pyls']},
-          \ 'whitelist': ['python']
-          \ })
-        augroup END
-    endif
-
-" Using Tabularize, make sure the tables are always aligned
-    inoremap <silent> <Bar> <Bar><Esc>:call <SID>align()<CR>a
-
-    function! s:align()
-        let p = '^\s*|\s.*\s|\s*$'
-        if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~#p || getline(line('.')+1) =~# p)
-            let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-            let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-            Tabularize/|/l1
-            normal! 0
-            call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-        endif
-    endfunction
-
 " ===== BASIC SETUP =====
 " Some basic setup
 	set nocompatible
@@ -136,7 +92,7 @@
 " Appearance
 	" Colorscheme
 	set background=dark
-	colorscheme gruvbox
+	colorscheme wal
 	let g:gruvbox_italic = 1
 	" Set the line number to absolute-relative number
 	set number
