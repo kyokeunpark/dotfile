@@ -10,6 +10,9 @@ export NOTETEMPLATE='~/Sync/Work/University/note_tp.md'
 	alias anastart='source /opt/anaconda/bin/activate root'
 	alias anastop='source /opt/anaconda/bin/deactivate root'
 
+	# Alacritty terminfo might now always be given in remote system
+	alias ssh='TERM=xterm-256color ssh'
+
 # Add sudo on some common commands that requrie sudo
 	alias sv='sudo vim'
 	alias snv='sudo nvim'

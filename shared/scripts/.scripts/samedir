@@ -12,18 +12,9 @@ echo "$PID"
 
 # Get last child process (shell, vim, etc)
 if [ -n "$PID" ]; then
-	TREE=$(pstree -lpA $PID | tail -n 1)
-	PID=$(echo $TREE | awk -F'---' '{print $NF}' | sed -re 's/[^0-9]//g')
-
-	echo "$TREE"
-	echo "$PID"
-
-	# If we find the working directory, run the command in that directory
-	if [ -e "/proc/$PID/cwd" ]; then
-		CWD=$(readlink /proc/$PID/cwd)
-		echo "$CWD"
-	fi
+	CWD="$(readlink -e /proc/"$(pgrep -P "$(xdo pid)" | tail -n 1)"/cwd)"
 fi
+
 if [ -n "$CWD" ]; then
 	cd $CWD && $CMD
 else

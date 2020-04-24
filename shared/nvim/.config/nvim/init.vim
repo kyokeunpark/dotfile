@@ -136,13 +136,17 @@ call plug#end()
     set laststatus=2
     set switchbuf=useopen,usetab
     set backspace=indent,eol,start
+
     " Make splitting occur on right and bottom
     " This makes more intuitive sense compared to the default setting of vim
     set splitbelow splitright
+
     " exrc allows Vim to source the source file if it is in working dir
     set exrc
+
     " Disable scratch window
     set completeopt-=preview
+
     " Like a filthy-normie, enable mouse interaction for nvim
     set mouse=a
 
@@ -168,6 +172,9 @@ call plug#end()
     " Haskell should not use tab indent
     autocmd FileType haskell setlocal shiftwidth=4 softtabstop=4 expandtab
 
+    " Vimrc is setup with spaces, so just keep that format
+    au FileType vim setlocal shiftwidth=4 softtabstop=4 expandtab
+
 " ===== APPEARANCE
     " Colorscheme
     colorscheme wal
@@ -186,7 +193,12 @@ call plug#end()
     " Indentation
     set noexpandtab tabstop=8 shiftwidth=8 softtabstop=0
 
+    " NVim by default returns to terminal with block cursor, which is
+    " diff from what I have (underline). So, fix that
     au VimLeave * set guicursor=a:hor25-blinkon175
+
+    " Automatically delete all trailing whitespace on save
+    au BufWritePost * %s/\s\+$//e
 
 " ===== KEY MAPPINGS
     " Set the leader key to space
@@ -194,6 +206,13 @@ call plug#end()
 
     " Goyo (distraction-free text editor) activated with <leader>g
     map <leader>G :Goyo \| set linebreak<CR>
+
+    " Spell-check set to <leader>o. 'o' for 'orthography'
+    map <leader>o :setlocal spell! spelllang=en_ca<CR>
+
+    " Copy selected text to system clipboard (requires gvim installed)
+    vnoremap <C-c> "*Y :let @+=@*<CR>
+    map <C-p> "+P
 
     " Toggle NERDTree
     map <C-L> :NERDTreeFocus<CR>
