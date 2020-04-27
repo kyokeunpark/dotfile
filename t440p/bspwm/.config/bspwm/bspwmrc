@@ -1,35 +1,11 @@
 #! /bin/sh
 
-# Kill all of the old process
-killall sxhkd
-killall picom
-killall fcitx
-killall nm-applet
-killall blueman-applet
-killall udiskie
-killall syncthing-gtk
-killall polkitd
-killall birdtray
-
-while pgrep -u $UID -x syncthing-gtk >/dev/null; do sleep 1; done
-
-# Respawn all of the daemons, applets, other misc processes
-sxhkd &
-~/.config/polybar/launch.sh &
-picom -b --respect-prop-shadow -i 0.8 --vsync -D 5 &
-fcitx &
-nm-applet &
-blueman-applet &
-udiskie --tray &
-syncthing-gtk --minimized &
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-~/.fehbg &
-birdtray &
+bspstart
 
 xss-lock -- betterlockscreen -l blur 0.5 &
 xsetroot -cursor_name left_ptr
 xinput set-prop 'AlpsPS/2 ALPS DualPoint Stick' 'libinput Accel Profile Enabled' 0 0
-xinput set-prop 'AlpsPS/2 ALPS DualPoint Stick' 'libinput Accel Speed' -0.5
+xinput set-prop 'AlpsPS/2 ALPS DualPoint Stick' 'libinput Accel Speed' -0.2
 xinput set-prop 'AlpsPS/2 ALPS DualPoint TouchPad' 'libinput Natural Scrolling Enabled' 1
 xinput set-prop 'AlpsPS/2 ALPS DualPoint TouchPad' 'libinput Click Method Enabled' 0 1
 xset r rate 200 35
