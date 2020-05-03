@@ -21,6 +21,8 @@ wal -R &
 # Run sxhkd -- keyboard dbus daemon
 sxhkd &
 
+fcitx &
+
 run nm-applet
 run udiskie --tray
 run syncthing-gtk --minimized
