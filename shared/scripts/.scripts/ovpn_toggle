@@ -3,8 +3,6 @@
 OVPN="$(ls ~/*.ovpn)"
 OVPN="$(basename ${OVPN%.*})"
 
-echo "$OVPN"
-
 SERVICE="openvpn-client@$OVPN.service"
 
 if (systemctl -q is-active $SERVICE); then
