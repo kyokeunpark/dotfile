@@ -21,6 +21,8 @@ wal -R &
 # Run sxhkd -- keyboard dbus daemon
 sxhkd &
 
+fcitx &
+
 run nm-applet
 run syncthing-gtk --minimized
 run redshift-gtk

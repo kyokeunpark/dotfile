@@ -1,0 +1,67 @@
+#!/bin/sh
+# Script to retrieve and set values from YAML file
+# By: KyoKeun Park
+
+SCRNAME="yamladj"
+
+usage()
+{
+	echo "Usage: $SCRNAME filename [ option ]"
+	echo
+	echo "Options:"
+	echo "\t-g <key> : Get value from given key from file"
+	echo "\t-s <key> <value> : Set value to given key from file"
+	echo
+	echo "Nested keys must be indicated with '.'"
+	echo "Eg. a:"
+	echo "\tb: x"
+	echo "Must be represented as: 'a.b'"
+	exit 1
+}
+
+# Usage:
+# 	$1: Key
+# Prereq: $FILENAME must be defined
+# Returns:
+# 	$DEPTH: depth of the key
+# 	$KEYS: parsed key in an array form
+# 	$VALUE: value of the given key
+# 		can be "yamladj_dne" if it doesn't exist
+parsekey()
+{
+	[ ! $1 ] && "$SCRNAME: Parsable key not found" && exit 1
+	KEYS="$(echo "$1" | tr "." "\n")"
+
+	for _key in "$KEYS"; do
+		echo "$_key"
+	done
+}
+
+# Usage:
+# 	$1: Key
+# Prereq: $FILENAME must be defined
+getreq()
+{
+	[ ! $1 ] && usage
+	parsekey $1
+}
+
+# Usage:
+# 	$1 : Key
+# 	$2 : Value
+# Prereq: $FILENAME must be defined
+setreq()
+{
+	[ ! $1 ] || [ ! $2 ] && usage
+}
+
+# Make sure it's a YAML file and that file exists
+FILENAME="$1"
+BASENAME="$(basename $FILENAME)"
+[ "${BASENAME##*.}" != "yml" ] || [ ! "$(stat $FILENAME)" ] && usage
+
+case "$2" in
+	"-g" ) getreq "$3" ;;
+	"-s" ) setreq "$3" "$4" ;;
+	* ) usage ;;
+esac
