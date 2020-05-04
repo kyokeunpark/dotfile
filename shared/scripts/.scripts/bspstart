@@ -22,7 +22,6 @@ wal -R &
 sxhkd &
 
 run nm-applet
-run udiskie --tray
 run syncthing-gtk --minimized
 run redshift-gtk
 run udiskie --tray
