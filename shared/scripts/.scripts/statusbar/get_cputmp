@@ -1,0 +1,4 @@
+#!/bin/sh
+# Requires lm-sensors configured
+
+sensors | grep Tdie | sed -e 's/^Tdie:.*+\(.*\) .*/\1/'

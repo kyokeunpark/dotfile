@@ -1,0 +1,3 @@
+#!/bin/sh
+
+scratchy "$TERMINAL ${TERMCL}dropdown" "dropdown" 20 0 60 35

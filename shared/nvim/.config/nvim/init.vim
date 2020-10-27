@@ -1,5 +1,5 @@
 " ===== PLUGGED
-call plug#begin('~/.local/share/nvim/plugged') 
+call plug#begin('~/.local/share/nvim/plugged')
     Plug 'dylanaraps/wal.vim'
     Plug 'morhetz/gruvbox'
     Plug 'joshdick/onedark.vim'
@@ -250,7 +250,7 @@ call plug#end()
     " FZF mappings
     nnoremap <C-F> :Files<CR>
     nmap <leader>b :Buffers<CR>
-    nmap <leader>t :Tags 
+    nmap <leader>t :Tags
 
     " Set ctrl-backspace to delete a word in insert mode
     " For some reason, just remapping <C-BS> to <C-W> does not work in terminal.
@@ -357,4 +357,4 @@ call plug#end()
     set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
     " Cscope related
-    nmap <C-g> :cscope find g 
+    nmap <C-g> :cscope find g

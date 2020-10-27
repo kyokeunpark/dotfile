@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Uncomment the line below and comment one beneath it if percentage is preferred
+# top -bn1 | grep "Mem :" | awk '{printf "%.1f%\n", $8 / $4 * 100}'
+top -bn1 | grep "Mem :" | awk '{print $8"MiB"}'

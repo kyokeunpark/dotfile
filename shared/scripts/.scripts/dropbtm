@@ -1,0 +1,3 @@
+#!/bin/sh
+
+scratchy "$TERMINAL ${TERMCL}btm ${TERMEXEC} btm" "btm" 75 0 25 45

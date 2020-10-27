@@ -9,10 +9,10 @@ if pidof -o %PPID -x "$0"; then
 	exit 0
 fi
 
-screenshot="$(mktemp --suffix screenshot.png)"
-maim "${screenshot}"
-feh "${screenshot}" &
-feh_pid=$!
+# screenshot="$(mktemp --suffix screenshot.png)"
+# maim "${screenshot}"
+# feh "${screenshot}" &
+# feh_pid=$!
 
 case "$(printf "a selected area\\ncurrent window\\nfull screen\\na selected area (copy)\\ncurrent window (copy)\\nfull screen (copy)" | rofi -dmenu -i -p "Screenshot prompt")" in
 	"a selected area") $prog -s "$fullpath" ;;
@@ -23,5 +23,5 @@ case "$(printf "a selected area\\ncurrent window\\nfull screen\\na selected area
 	"full screen (copy)") sleep 0.2 && $prog | xclip -selection clipboard -t image/png ;;
 esac
 
-kill -SIGKILL ${feh_pid}
-rm "${screenshot}"
+# kill -SIGKILL ${feh_pid}
+# rm "${screenshot}"

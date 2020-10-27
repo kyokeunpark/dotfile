@@ -1,0 +1,3 @@
+#!/bin/sh
+
+[ $(cat /sys/class/net/e*/operstate) = up ] && echo "ETH" || ([ $(cat /sys/class/net/w*/operstate) = up ] && echo "WLAN") || echo "NO_CONN"

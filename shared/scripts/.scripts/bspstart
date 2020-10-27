@@ -1,34 +1,24 @@
 #!/bin/sh
 # Simple script to autostart programs upon boot
 
+# For some reason, some application (ie., Firefox) does not play well with
+# pgrep. Funnily enough, same can be said for pidof as well for some
+# application... So here we are..
 run()
 {
-	[ ! $(pgrep $1) ] && $@&
+	pgrep $1 || pidof $1 || setsid $@ &
 }
-
-# run polybar
-$HOME/.config/polybar/launch.sh &
-
-# Run feh to set the background
-$HOME/.fehbg &
 
 # Run Gnome keyring
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-
-# Run wal
-wal -R &
-
-# Run sxhkd -- keyboard dbus daemon
-sxhkd &
-
-fcitx &
-
-run nm-applet
+run fcitx
+run dunst
+# run nm-applet
 run udiskie --tray
 run syncthing-gtk --minimized
 run redshift-gtk
-run udiskie --tray
 run polkitd
-run birdtray
-run firefox
-run picom -b --respect-prop-shadow -D 5 -f --experimental-backends
+# run birdtray
+run picom -b -D 5 -f --experimental-backends
+# run cleanfullscreen
+# run flashfocus

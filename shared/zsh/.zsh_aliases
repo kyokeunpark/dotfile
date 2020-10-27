@@ -1,14 +1,13 @@
 export NOTETEMPLATE='~/Sync/Work/University/note_tp.md'
 
-# Program shortcut 
+# Program shortcut
 	alias g='git'
 	alias ls='ls -a --color=auto'
 	alias rtv='rtv --enable-media'
 	alias v='vim'
 	alias nv='nvim'
-	alias zat='zathura'
-	alias anastart='source /opt/anaconda/bin/activate root'
-	alias anastop='source /opt/anaconda/bin/deactivate root'
+	alias open='xdg-open'
+	alias sys='systemctl --user'
 
 	# Alacritty terminfo might now always be given in remote system
 	alias ssh='TERM=xterm-256color ssh'
@@ -17,9 +16,10 @@ export NOTETEMPLATE='~/Sync/Work/University/note_tp.md'
 	alias sv='sudo vim'
 	alias snv='sudo nvim'
 	alias pm='sudo pacman'
-	alias sys='sudo systemctl'
+	alias ssys='sudo systemctl'
 
 # Shortcut to cd to diff places; "Bookmarks"
+	alias gc='cd ~/.config/'
 	alias gd='cd ~/Documents'							# documents
 	alias gD='cd ~/Downloads'							# downloads
 	alias gdf='cd ~/Documents/i3_arch_rice'				# dotfile
