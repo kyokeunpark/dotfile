@@ -13,12 +13,8 @@ run()
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 run fcitx
 run dunst
-# run nm-applet
 run udiskie --tray
 run syncthing-gtk --minimized
 run redshift-gtk
 run polkitd
-# run birdtray
 run picom -b -D 5 -f --experimental-backends
-# run cleanfullscreen
-# run flashfocus
