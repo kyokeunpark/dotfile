@@ -12,3 +12,5 @@ else
 	echo "Turning on OpenVPN..."
 	sudo systemctl start $SERVICE
 fi
+
+kill -45 $(pidof dwmblocks)

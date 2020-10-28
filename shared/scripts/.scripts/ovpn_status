@@ -1,0 +1,10 @@
+#!/bin/sh
+
+FILE="$(basename $(ls ~/*.ovpn))"
+OVPN="${FILE%.*}"
+
+SERVICE="openvpn-client@$OVPN.service"
+RET="$(systemctl is-active $SERVICE)"
+
+[ "$RET" = "active" ] && echo "Connected" && exit 0
+echo "Disconnected"

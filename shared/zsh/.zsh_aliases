@@ -16,7 +16,7 @@ export NOTETEMPLATE='~/Sync/Work/University/note_tp.md'
 	alias sv='sudo vim'
 	alias snv='sudo nvim'
 	alias pm='sudo pacman'
-	alias ssys='sudo systemctl'
+	alias ssys='systemctl'
 
 # Shortcut to cd to diff places; "Bookmarks"
 	alias gc='cd ~/.config/'
