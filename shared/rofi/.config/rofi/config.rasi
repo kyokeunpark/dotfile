@@ -152,6 +152,8 @@ listview {
   cycle: false;
   margin: 0 0 -1px 0;
   scrollbar: false;
+  dynamic: true;
+  lines: 10;
 }
 
 element {
