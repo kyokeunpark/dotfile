@@ -1,0 +1,31 @@
+#!/bin/bash
+# Wayland alternative to maimpick :)
+# Dependencies:
+# 	- grim
+# 	- slurp
+
+dir="$HOME/Pictures/ss"
+
+fullpath="$dir/$(date +%s)_$(date +%m)_$(date +%d).png"
+prog="grim"
+
+[ $(pidof -o %PPID =x "$0") ] && exit 0
+
+screenshot="$(mktemp --suffix screenshot.png)"
+grim "${screenshot}"
+feh "${screenshot}" &
+feh_pid=$!
+
+while [ -z "$(swaymsg -t get_tree | grep feh)" ]; do
+	continue
+done
+
+case "$(printf "a selected area\\nfull screen\\na selected area (copy)\\nfull screen (copy)" | wofi -dmenu -i -p "Screenshot prompt")" in
+	"a selected area") $prog -g "$(slurp)" "$fullpath" ;;
+	"full screen") $prog "$fullpath$" ;;
+	"a selected area (copy)") $prog -g "$(slurp)" - | wl-copy ;;
+	"full screen (copy)") $prog - | wl-copy ;;
+esac
+
+kill -SIGKILL ${feh_pid}
+rm "${screenshot}"

@@ -1,0 +1,23 @@
+#!/bin/sh
+
+dir="$HOME/Videos/captures"
+fullpath="$dir/$(date +%s)_$(date +%m)_$(date +%d).mp4"
+prog="wf-recorder -f ${fullpath}"
+
+# If a wf-recorder process is already running, tell it to end recording instead
+prevrec="$(pidof wf-recorder)"
+if [ ${prevrec} ]; then
+	echo "${prevrec}"
+	kill -s INT "${prevrec}"
+	notify-send "Recording ended"
+	exit 0
+fi
+
+case "$(printf "a selected area\\nfull screen\\na selected area (w/ sound)\\nfull screen (w/ sound)" | wofi -dmenu -i -p "Screen Record prompt")" in
+	"a selected area") $prog -g "$(slurp)" & notify-send "Recording started" ;;
+	"full screen") $prog & notify-send "Recording started" ;;
+	"a selected area (w/ sound)") $prog -g "$(slurp)" -a & notify-send "Recording started" ;;
+	"full screen (w/ sound)") $prog -a & notify-send "Recording started" ;;
+esac
+
+echo "$!"

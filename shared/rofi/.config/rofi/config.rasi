@@ -21,9 +21,9 @@
     selected-urgent-foreground: @foreground;
 
     background-color: @background;
+    border-color: @background;
     background: #0f0c1580;
     foreground: #beb4bb;
-    border-color: @background;
     spacing: 2;
 }
 
@@ -57,7 +57,6 @@
     str: ":";
     margin: 0px 0.3em 0em 0em;
     text-color: @normal-foreground;
-    font: @text-font;
 }
 
 #listview {
@@ -126,38 +125,45 @@
     padding: 0;
 }
 
-#sidebar {
-    border: 2px 0px 0px;
-    border-color: @border-color;
+inputbar {
+  border: 0 0 1px 0;
+  children: [prompt,entry];
 }
 
-#button {
-    text-color: @normal-foreground;
+prompt {
+  padding: 8px;
+  border: 0 1px 0 0;
+  text-color: @normal-foreground;
 }
 
-#button.selected {
-    background-color: @selected-normal-background;
-    text-color: @selected-normal-foreground;
+textbox {
+  background-color: #2e343f;
+  border: 0 0 1px 0;
+  border-color: #282C33;
+  padding: 4px 8px;
 }
 
-#inputbar {
-    spacing: 0;
-    text-color: @normal-foreground;
-    padding: 1px;
+entry {
+  padding: 8px;
+  text-color: @normal-foreground;
 }
 
-#case-indicator {
-    spacing: 0;
-    text-color: @normal-foreground;
+listview {
+  cycle: false;
+  margin: 0 0 -1px 0;
+  scrollbar: false;
 }
 
-#entry {
-    spacing: 0;
-    text-color: @normal-foreground;
+element {
+  border: 0 0 1px 0;
+  padding: 8px;
 }
 
 #prompt {
     spacing: 0;
     text-color: @normal-foreground;
     font: @text-font;
+}
+element selected {
+  background-color: #2e343f;
 }

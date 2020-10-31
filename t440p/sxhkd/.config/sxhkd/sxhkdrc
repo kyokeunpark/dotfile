@@ -39,7 +39,7 @@ XF86MonBrightnessDown
 super + w
 	$BROWSER
 super + r
-	$TERMINAL -n ranger -e ranger
+	$TERMINAL -e ranger
 Print
 	maimpick
 
