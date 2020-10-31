@@ -175,7 +175,7 @@ colors:
   # the cursor color will be the inverse of the cell color.
   cursor:
     # text: '#beb4bb'
-    cursor: '#beb4bb'
+    cursor: '#fff1ef'
 
   # Selection colors
   #
@@ -188,39 +188,39 @@ colors:
 
   # Normal colors
   normal:
-    black:   '#857d82'
-    red:     '#705868'
-    green:   '#b65a45'
-    yellow:  '#946161'
-    blue:    '#c19078'
-    magenta: '#e99964'
-    cyan:    '#737286'
-    white:   '#beb4bb'
+    black:   '#100910'
+    red:     '#bd6d64'
+    green:   '#90686d'
+    yellow:  '#df9a6b'
+    blue:    '#726f84'
+    magenta: '#a77a84'
+    cyan:    '#a46767'
+    white:   '#d7c0be'
 
   # Bright colors
   bright:
-    black:   '#857d82'
-    red:     '#705868'
-    green:   '#b65a45'
-    yellow:  '#946161'
-    blue:    '#c19078'
-    magenta: '#e99964'
-    cyan:    '#737286'
-    white:   '#beb4bb'
+    black:   '#57565c'
+    red:     '#ff7e6f'
+    green:   '#cb7781'
+    yellow:  '#ffc475'
+    blue:    '#8880bb'
+    magenta: '#eb8ba1'
+    cyan:    '#e67474'
+    white:   '#fff1ef'
 
   # Dim colors
   #
   # If the dim colors are not set, they will be calculated automatically based
   # on the `normal` colors.
-  dim:
-    black:   '#857d82'
-    red:     '#705868'
-    green:   '#b65a45'
-    yellow:  '#946161'
-    blue:    '#c19078'
-    magenta: '#e99964'
-    cyan:    '#737286'
-    white:   '#beb4bb'
+  # dim:
+  #   black:   '#857d82'
+  #   red:     '#705868'
+  #   green:   '#b65a45'
+  #   yellow:  '#946161'
+  #   blue:    '#c19078'
+  #   magenta: '#e99964'
+  #   cyan:    '#737286'
+  #   white:   '#beb4bb'
 
   # Indexed Colors
   #

@@ -1,0 +1,5 @@
+#!/bin/env bash
+
+[ "$(pgrep -u $UID -x dzen2)" ] && pkill -f "dzen2 -title-name calendar" && exit 0
+
+calen

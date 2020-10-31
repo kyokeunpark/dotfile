@@ -1,0 +1,8 @@
+#!/bin/sh
+
+systemctl --user --quiet is-active syncthing.service
+RET="$?"
+
+[ "$RET" = "0" ] ||\
+	(notify-send "Syncthing stopped running... Restarting..." &&\
+	 systemctl --user start syncthing.service)

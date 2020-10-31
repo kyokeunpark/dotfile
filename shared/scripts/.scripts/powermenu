@@ -1,0 +1,9 @@
+#!/bin/bash
+# Simple power prompt script, written for Rofi
+
+MENU="$(rofi -sep "|" -dmenu -i -p 'System' <<< "Logout|Reboot|Shutdown")"
+case "$MENU" in
+	Logout) bspc quit ;;
+	Reboot) sync && systemctl reboot ;;
+	Shutdown) sync && systemctl -i poweroff
+esac

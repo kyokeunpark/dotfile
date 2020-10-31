@@ -1,18 +1,38 @@
 #! /bin/sh
 
-# Autostart programs
-bspstart
+# wpgtk initialization
+$HOME/.config/wpg/wp_init.sh
+
+# Run wal
+wal -R
+#Run sxhkd -- keyboard dbus daemon
+sxhkd &
+# Run Polybar
+$HOME/.config/polybar/launch.sh &
+# Set wacom buttons
+$HOME/.scripts/wacomset &
+# Run feh to set the background
+$HOME/.scripts/setfeh &
+# Autostart misc programs (only on boot)
+$HOME/.scripts/bspstart &
+
+# pgrep bspswallow || bspswallow &
+export PIDSWALLOW_SWALLOW_COMMAND='bspc node $pwid --flag hidden=on'
+export PIDSWALLOW_VOMIT_COMMAND='bspc node $pwid --flag hidden=off'
+export PIDSWALLOW_PREGLUE_HOOK='bspc query -N -n $pwid.floating >/dev/null && bspc node $cwid --state floating'
+pgrep -fl 'pidswallow -gl' || pidswallow -gl &
 
 xsetroot -cursor_name left_ptr
-xset r rate 200 35
 xdo lower -N Polybar
+
+$HOME/.config/bspwm/bspwm_colors.sh
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 
-bspc config border_width         3
+bspc config border_width         5
 bspc config window_gap          12
 
-bspc config split_ratio          0.60
+bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      false
 bspc config automatic_scheme     longest_side
@@ -25,3 +45,5 @@ bspc rule -a System-config-printer.py state=floating
 bspc rule -a Zathura state=tiled
 bspc rule -a KeePassXC state=floating
 bspc rule -a Peek state=floating
+bspc rule -a Pavucontrol state=floating
+bspc rule -a Emacs state=tiled

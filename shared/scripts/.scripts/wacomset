@@ -1,0 +1,10 @@
+#!/bin/sh
+
+PAD="HID 256c:006e Pad pad"
+
+xsetwacom set "$PAD" Button 1 "key +ctrl +shift p"
+xsetwacom set "$PAD" Button 3 "key +ctrl +shift e"
+xsetwacom set "$PAD" Button 2 "key +ctrl +shift h"
+xsetwacom set "$PAD" Button 8 "key +ctrl 6"
+xsetwacom set "$PAD" Button 9 "key +ctrl d"
+xsetwacom set "$PAD" Button 10 "key +ctrl z"

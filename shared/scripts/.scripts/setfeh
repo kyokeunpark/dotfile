@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --no-fehbg --bg-fill '/home/kyokeun/Sync/Photos/wallpapers/blossom_lava.png'
