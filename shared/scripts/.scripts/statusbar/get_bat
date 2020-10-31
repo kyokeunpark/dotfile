@@ -1,0 +1,10 @@
+#!/bin/sh
+
+for battery in /sys/class/power_supply/BAT?
+do
+	capacity=$(cat "$battery"/capacity 2>/dev/null) || break
+	status=$(sed "s/[Dd]ischarging/DC/;s/[Nn]ot charging/NC/;s/[Cc]harging/C/;s/[Uu]nknown/?/;s/[Ff]ull/F/" "$battery"/status)
+
+	[ "$capacity" -le 25 ] && [ "$status" = "DC" ] && warn=" "
+	printf "%s%s %s%s" "$status" "$warn" "$capacity" "%"
+done

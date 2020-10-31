@@ -2,6 +2,10 @@
 
 bspstart
 
+$HOME/.fehbg &
+sxhkd &
+$HOME/.config/polybar/launch.sh &
+
 xss-lock -- betterlockscreen -l blur 0.5 &
 xsetroot -cursor_name left_ptr
 xinput set-prop 'AlpsPS/2 ALPS DualPoint Stick' 'libinput Accel Profile Enabled' 0 1
