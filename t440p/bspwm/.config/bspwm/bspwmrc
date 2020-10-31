@@ -4,8 +4,8 @@ bspstart
 
 xss-lock -- betterlockscreen -l blur 0.5 &
 xsetroot -cursor_name left_ptr
-xinput set-prop 'AlpsPS/2 ALPS DualPoint Stick' 'libinput Accel Profile Enabled' 0 0
-xinput set-prop 'AlpsPS/2 ALPS DualPoint Stick' 'libinput Accel Speed' -0.2
+xinput set-prop 'AlpsPS/2 ALPS DualPoint Stick' 'libinput Accel Profile Enabled' 0 1
+xinput set-prop 'AlpsPS/2 ALPS DualPoint Stick' 'libinput Accel Speed' 0.6
 xinput set-prop 'AlpsPS/2 ALPS DualPoint TouchPad' 'libinput Natural Scrolling Enabled' 1
 xinput set-prop 'AlpsPS/2 ALPS DualPoint TouchPad' 'libinput Click Method Enabled' 0 1
 xset r rate 200 35
@@ -26,3 +26,4 @@ bspc rule -a Thunderbird desktop='^9'
 bspc rule -a feh state=floating
 bspc rule -a System-config-printer.py state=floating
 bspc rule -a Zathura state=tiled
+bspc rule -a Emacs state=tiled

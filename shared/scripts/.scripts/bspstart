@@ -31,3 +31,4 @@ run polkitd
 run birdtray
 run firefox
 run picom -b --respect-prop-shadow -D 5 -f --experimental-backends
+run keepassxc

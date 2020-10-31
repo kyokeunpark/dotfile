@@ -1,5 +1,5 @@
 export BROWSER="firefox"
-export TERMINAL="st"
+export TERMINAL="alacritty"
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
@@ -7,3 +7,4 @@ export LC_ALL="en_US.UTF-8"
 export PATH=$PATH:~/.scripts
 export QT_QPA_PLATFORMTHEME=gtk2
 VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
+export PATH=$PATH:/home/kyokeun/.local/bin
