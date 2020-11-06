@@ -1,0 +1,113 @@
+set preview true
+set hidden true
+set icons
+set hiddenfiles "*.aux:*.bbl:*.bcf:*.blg:*.run.xml"
+set ifs "\n"
+set drawbox
+
+$lf -remote "send $id set previewer ${XDG_CONFIG_HOME:-$HOME/.config}/lf/scope"
+
+cmd open ${{
+	case $(file --mime-type $f -b) in
+		application/pdf|application/epub*) zathura $fx >/dev/null 2>&1;;
+		image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\)\(_large\)*$" | sxiv -aio 2>/dev/null | lf-select;;
+		audio/*) mpv --audio-dipslay=no $f ;;
+		video/*) mpv $f -quiet >/dev/null 2>&1;;
+		text/*) nvim $fx ;;
+		*) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+	esac
+}}
+
+cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
+
+cmd touch $touch "$(echo $* | tr ' ' '\ ')"
+
+cmd delete ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf "%s\n\t" "$fx"
+	printf "delete?[y/N]"
+	read ans
+	[ $ans = 'y' ] && rm -rf $fx
+}}
+
+cmd moveto ${{
+	clear; tput cupt $(($(tput lines)/3)); tput bold
+	set -f
+	clear; echo "Move to where?"
+	dest="$(cut -d'	' -f2- ${XDG_CONFIG_HOME:-$HOME/.config}/directories | fzf | sed 's|~|$HOME|' )" &&
+	for x in $fx; do
+		eval mv -iv \"$x\" \"$dest\"
+	done &&
+	notify-send "File(s) moved to $dest."
+}}
+
+cmd copyto ${{
+	clear; tput cupt $(($(tput lines)/3)); tput bold
+	set -f
+	clear; echo "Copy to where?"
+	dest="$(cut -d'	' -f2- ${XDG_CONFIG_HOME:-$HOME/.config}/directories | fzf | sed 's|~|$HOME|' )" &&
+	for x in $fx; do
+		eval cp -ivr \"$x\" \"$dest\"
+	done &&
+	notify-send "File(s) copied to $dest."
+}}
+
+cmd paste &{{
+	load=$(lf -remote 'load')
+	mode=$(echo "$load" | sed -n '1p')
+	list=$(echo "$load" | sed '1d')
+	if [ $mode = 'copy' ]; then
+		rsync -av --ignore-existing --progress $list . \
+		| stdbuf -i0 -o0 -e0 tr '\r' '\n' \
+		| while read line; do
+			lf -remote "send $id echo $line"
+		done
+	elif [ $mode = 'move' ]; then
+		mv -n $list .
+	fi
+	lf -remote 'send load'
+	lf -remote 'send clear'
+}}
+
+cmd bulkrename ${{
+    old=$(mktemp)
+    new=$(mktemp)
+    [ -n $fs ] && fs=$(ls)
+    printf "$fs\n" > $old
+    printf "$fs\n" > $new
+    $EDITOR $new
+    [ $(cat $new | wc -l) -ne $(cat $old | wc -l) ] && exit
+    paste $old $new | while read names; do
+        src=$(printf $names | cut -f1)
+        dst=$(printf $names | cut -f2)
+        [ $src = $dst ] && continue
+        [ -e $dst ] && continue
+        mv $src $dst
+    done
+    rm $old $new
+    lf -remote "send $id unselect"
+}}
+
+map <c-f> $lf -remote "send $id select '$(fzf)'"
+map D delete
+map C copyto
+map M moveto
+map <c-l> clear
+map <c-n> push :mkdir<space>
+map <c-t> push :touch<space>
+map <c-r> reload
+map <enter> open
+map x $$f
+map X !$f
+map o &mimeopen $f
+map O $mimeopen --ask $f
+
+map A rename
+map c push A<c-u>
+map I push A<c-a>
+map i push A<a-b><a-b><a-f>
+map a push A<a-b>
+map B bulkrename
+
+map V push :!nvim<space>
