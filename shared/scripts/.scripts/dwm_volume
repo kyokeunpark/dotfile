@@ -1,5 +1,8 @@
 #!/bin/sh
 
 [ ! $1 ] && exit 1
-amixer set Master $1
+# TODO: This is a pretty shitty workaround. I should just port the script to
+#       completely using pactl instead.
+([ "$1" = "toggle" ] && pactl set-sink-mute @DEFAULT_SINK@ toggle) || amixer set Master $1
+
 kill -44 $(pidof dwmblocks)

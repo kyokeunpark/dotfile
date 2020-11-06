@@ -8,7 +8,7 @@
  */
 
 configuration {
-    font:                           "Noto Sans 10";
+    font:                           "Overpass 10";
     show-icons:                     true;
 	icon-theme: 					"Papirus";
     display-drun: 					"";
@@ -37,8 +37,8 @@ window {
     background-color:               @background;
     text-color:                     @foreground;
     border-radius:                  0px;
-    height:                         40%;
-    width:                          30%;
+    height:                         60%;
+    width:                          40%;
     location:                       center;
     anchor:                         center;
     x-offset:                       0;

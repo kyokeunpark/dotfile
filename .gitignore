@@ -4,3 +4,5 @@ shared/nvim/.config/nvim/.netrwhist
 shared/nvim/.local/share/nvim/plugged
 shared/vim/.vim/bundle/
 shared/nvim/.local/share/nvim/log
+shared/dunst/.config/dunst/dunstrc
+shared/dunst/.config/dunst/dunstrc.bak

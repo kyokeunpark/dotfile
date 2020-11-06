@@ -24,6 +24,7 @@
     border-color: @background;
     background: #0f0c1580;
     foreground: #beb4bb;
+    text-font: "Source Code Pro 10";
     spacing: 2;
 }
 
@@ -36,6 +37,7 @@
 #mainbox {
     border: 0;
     padding: 0;
+    font: @text-font;
 }
 
 #message {
@@ -66,56 +68,67 @@
     spacing: 2px;
     scrollbar: true;
     padding: 2px 0px 0px;
+    font: @text-font;
 }
 
 #element {
     border: 0;
     padding: 1px;
+    font: @text-font;
 }
 
 #element.normal.normal {
     background-color: @normal-background;
     text-color: @normal-foreground;
+    font: @text-font;
 }
 
 #element.normal.urgent {
     background-color: @urgent-background;
     text-color: @urgent-foreground;
+    font: @text-font;
 }
 
 #element.normal.active {
     background-color: @active-background;
     text-color: @active-foreground;
+    font: @text-font;
 }
 
 #element.selected.normal {
     background-color: @selected-normal-background;
     text-color: @selected-normal-foreground;
+    font: @text-font;
 }
 
 #element.selected.urgent {
     background-color: @selected-urgent-background;
     text-color: @selected-urgent-foreground;
+    font: @text-font;
 }
 
 #element.selected.active {
     background-color: @selected-active-background;
     text-color: @selected-active-foreground;
+    font: @text-font;
 }
 
 #element.alternate.normal {
     background-color: @alternate-normal-background;
     text-color: @alternate-normal-foreground;
+    font: @text-font;
 }
 
 #element.alternate.urgent {
     background-color: @alternate-urgent-background;
     text-color: @alternate-urgent-foreground;
+    font: @text-font;
 }
 
 #element.alternate.active {
     background-color: @alternate-active-background;
     text-color: @alternate-active-foreground;
+    font: @text-font;
 }
 
 #scrollbar {
@@ -146,6 +159,7 @@ textbox {
 entry {
   padding: 8px;
   text-color: @normal-foreground;
+  font: @text-font;
 }
 
 listview {
@@ -159,6 +173,7 @@ listview {
 element {
   border: 0 0 1px 0;
   padding: 8px;
+  font: @text-font;
 }
 
 #prompt {
@@ -168,4 +183,5 @@ element {
 }
 element selected {
   background-color: #2e343f;
+  font: @text-font;
 }
