@@ -1,0 +1,7 @@
+#!/bin/sh
+# Author: KyoKeun Park
+# For some reason, my T480 keyboard backlit does not automatically reenable.
+# This script should be ran on systemd (or other management system) to be
+# run during startup and upon waking up from sleep.
+
+sleep 2 && /bin/echo 2 > "/sys/devices/platform/thinkpad_acpi/leds/tpacpi::kbd_backlight/brightness"
