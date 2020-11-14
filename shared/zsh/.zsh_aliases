@@ -7,6 +7,7 @@ export NOTETEMPLATE='~/Sync/Work/University/note_tp.md'
 	alias v='vim'
 	alias nv='nvim'
 	alias open='xdg-open'
+	alias mutt='neomutt'
 	alias sys='systemctl --user'
 
 	# Alacritty terminfo might now always be given in remote system
