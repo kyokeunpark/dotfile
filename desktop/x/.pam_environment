@@ -3,5 +3,7 @@ QT_IM_MODULE DEFAULT=fcitx
 XMODIFIERS DEFAULT=\@im=fcitx
 VISUAL=nvim
 EDITOR=nvim
-BROWSER=firefox
+BROWSER=librewolf
+BROWSER2=firefox
+BROWSER3=brave
 TERMINAL=st

@@ -18,4 +18,3 @@ run syncthing-gtk --minimized
 run redshift-gtk
 run polkitd
 run picom -b -D 5 -f --experimental-backends
-run thunderbird
