@@ -1,0 +1,16 @@
+#!/bin/sh
+
+ROOTDIR="$HOME/Mail"
+
+mbsync -aV
+
+for subdir in "$ROOTDIR"/*/; do
+	name="$(basename $subdir)"
+	unread="$(find "$subdir"/INBOX/new/* -type f  2>/dev/null | wc -l 2>/dev/null)"
+	[ "$unread" = "0" ] || notify-send -i "$HOME/.scripts/assets/mail.png" -t 5000 "$name: $unread new email(s)" "$(
+			for mail in "$subdir"/INBOX/new/*; do
+				[ -f "$mail" ] || continue
+				echo "$(grep "Subject: " "$mail")"
+			done
+		)"
+done
