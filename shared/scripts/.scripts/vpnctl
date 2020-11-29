@@ -16,18 +16,20 @@ MULLVADUP="$(mullvad status | awk '{print $3}' 2>/dev/null)"
 case $1 in
 	mullvad)
 		[ "$WGUP" ] \
-			&& echo "Wireguard is connected. Disconnecting..." \
+			&& notify-send "Wireguard is connected. Disconnecting..." \
 			&& wg-quick down wg0
 
 		! command -v mullvad > /dev/null && echo "Mullvad not found! Is it installed?" && exit 1
 
 		if [ "$MULLVADUP" = "Disconnected" ]; then
-			echo "Connecting to mullvad..."
+			notify-send "Connecting to mullvad..."
 			mullvad connect
 		else
-			echo "Disconnecting to mullvad..."
+			notify-send "Disconnecting to mullvad..."
 			mullvad disconnect
 		fi
+
+		kill -45 $(pidof dwmblocks)
 		;;
 	wg)
 		! command -v wg-quick > /dev/null \
@@ -35,16 +37,18 @@ case $1 in
 			&& exit 1
 
 		[ ! "$MULLVADUP" = "Disconnected" ] \
-			&& echo "Mullvad is connected. Disconnecting..." \
+			&& notify-send "Mullvad is connected. Disconnecting..." \
 			&& mullvad disconnect
 
 		if [ "$WGUP" ]; then
-			echo "Disconnecting to wireguard..."
+			notify-send "Disconnecting to wireguard..."
 			wg-quick down wg0
 		else
-			echo "Connecting to wireguard..."
+			notify-send "Connecting to wireguard..."
 			wg-quick up wg0
 		fi
+
+		kill -45 $(pidof dwmblocks)
 		;;
 	status)
 		command -v mullvad > /dev/null \
