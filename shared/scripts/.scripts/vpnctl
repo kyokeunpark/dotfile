@@ -1,0 +1,63 @@
+#!/bin/sh
+
+errorout() {
+	echo "Usage: vpnctl [ mullvad | wg | status ]"
+	exit 1
+}
+
+# TODO: Make it compatible with Mullvad
+
+# Interace which all my clients use to access wireguard instance
+WGIF="wg0"
+WGUP="$(ip link | grep "$WGIF")"
+# Check status of mullvad
+MULLVADUP="$(mullvad status | awk '{print $3}' 2>/dev/null)"
+
+case $1 in
+	mullvad)
+		[ "$WGUP" ] \
+			&& echo "Wireguard is connected. Disconnecting..." \
+			&& wg-quick down wg0
+
+		! command -v mullvad > /dev/null && echo "Mullvad not found! Is it installed?" && exit 1
+
+		if [ "$MULLVADUP" = "Disconnected" ]; then
+			echo "Connecting to mullvad..."
+			mullvad connect
+		else
+			echo "Disconnecting to mullvad..."
+			mullvad disconnect
+		fi
+		;;
+	wg)
+		! command -v wg-quick > /dev/null \
+			&& echo "wg-quick command is not found. On arch, install wireguard-tools" \
+			&& exit 1
+
+		[ ! "$MULLVADUP" = "Disconnected" ] \
+			&& echo "Mullvad is connected. Disconnecting..." \
+			&& mullvad disconnect
+
+		if [ "$WGUP" ]; then
+			echo "Disconnecting to wireguard..."
+			wg-quick down wg0
+		else
+			echo "Connecting to wireguard..."
+			wg-quick up wg0
+		fi
+		;;
+	status)
+		command -v mullvad > /dev/null \
+			&& [ "$MULLVADUP" = "Connected" ] \
+			&& echo "MULLVAD" && exit 0
+		command -v mullvad > /dev/null \
+			&& [ "$MULLVADUP" = "Connecting" ] \
+			&& echo "MV (connecting)" && exit 0
+
+		[ "$WGUP" ] && echo "WG" && exit 0
+		echo "Disconnected"
+		;;
+	*)
+		errorout
+		;;
+esac

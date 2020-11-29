@@ -52,4 +52,4 @@ export NOTETEMPLATE='~/Sync/Work/University/note_tp.md'
     alias ext="/home/kyokeun/.scripts/extract"
 
     # Toggle OpenVPN
-    alias tvpn="$HOME/.scripts/ovpn_toggle"
+    alias tvpn="$HOME/.scripts/vpnctl"
