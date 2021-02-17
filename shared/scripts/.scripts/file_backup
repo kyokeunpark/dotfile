@@ -1,0 +1,17 @@
+#!/bin/sh
+# Small shell script to back up SRC to DST.
+# Meant to be used in something like cron job
+
+[ ! "$2" ] && echo "Usage: file_backup <src path> <dst path>" && exit 1
+
+SRC="$1"
+SRCDIR="$(dirname "$SRC")"
+SRCNAME="$(basename "$SRC")"
+DST="$2"
+BACKUP="$(date +\%Y-\%m-\%d-\%H.\%M).tar.gz"
+
+[ ! -e "$SRC" ] && echo "$SRC does not exist"
+[ ! -d "$DST" ] && echo "$DST is not a directory"
+
+tar -czvf "$BACKUP" -C "$SRCDIR" "$SRCNAME"
+mv "$BACKUP" "$DST"
